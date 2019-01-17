@@ -6,4 +6,6 @@
     <color name="Color_editText">#dfdddd</color>
     <color name="Color_continue">#ffffff</color>
     <color name="color_text_terms_of_use">#909090</color>
+    <color name="colorArrayUp">#eeeded</color>
+    <color name="colorArrayBottom">#e0dfdf</color>
 </resources>
