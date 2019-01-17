@@ -7,46 +7,28 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
+ * {@link HomeFragment2.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link HomeFragment2#newInstance} factory method to
  * create an instance of this fragment.
  */
-
-public class HomeFragment extends Fragment {
+public class HomeFragment2 extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    ListView list;
-    String[] maintitle ={
-            "Restaurant","Restaurant",
-            "Restaurant","Restaurant",
-            "Restaurant",
-    };
-
-    String[] subtitle ={
-            "Nom, adresse restaurant","Nom, adresse restaurant",
-            "Nom, adresse restaurant","Nom, adresse restaurant",
-            "Nom, adresse restaurant",
-    };
-
-
-
-
-
-
-
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -56,7 +38,14 @@ public class HomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public HomeFragment() {
+    private ImageButton panier;
+
+    private ExpandableListView expandableListView;
+    private ExpandableListAdapter expandableListAdapter;
+    private List<String> expandableListTitle;
+    private HashMap<String, List<String>> expandableListDetail;
+
+    public HomeFragment2() {
         // Required empty public constructor
     }
 
@@ -66,11 +55,11 @@ public class HomeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment HomeFragment2.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static HomeFragment2 newInstance(String param1, String param2) {
+        HomeFragment2 fragment = new HomeFragment2();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -92,42 +81,28 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
-        View view;
-        view=inflater.inflate(R.layout.fragment_home, container, false);
-
-
-        list=(ListView)view.findViewById(R.id.list);
+        View view=inflater.inflate(R.layout.fragment_home_fragment2, container, false);
 
 
 
-        MyListAdapter adapter=new MyListAdapter(getActivity(), maintitle, subtitle);
-        list.setAdapter(adapter);
-/*
-        String[] liste = new String[]{
-                "Restaurant",
-                "Adresse",
-                " ",
-                "Restaurant",
-                "Adresse",
-                " ",
-                "Restaurant",
-                "Adresse",
-                " ",
-
-        };
-        ArrayAdapter <String> arrayAdapter=new ArrayAdapter <String>(getActivity(),R.layout.background_test,liste);
 
 
-        list.setAdapter(arrayAdapter);*/
+        expandableListView = (ExpandableListView)view.findViewById(R.id.expandableListView);
+        expandableListDetail = ExpandableListDataPump.getData();
+        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+        expandableListAdapter = new CustomExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail);
+        expandableListView.setAdapter(expandableListAdapter);
+
+
+
+
         return view;
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteractionHome(uri);
+            mListener.onFragmentInteraction(uri);
         }
     }
 
@@ -160,6 +135,6 @@ public class HomeFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteractionHome(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 }
