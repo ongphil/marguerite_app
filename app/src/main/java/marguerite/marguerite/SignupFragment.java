@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -42,7 +44,9 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
     private TextInputLayout input_first_name;
     private EditText editText_last_name;
     private TextInputLayout input_last_name;
-
+    private RadioGroup radio_button_gender;
+    private RadioButton button_m;
+    private  RadioButton button_mme;
 
 
     private OnFragmentInteractionListener mListener;
@@ -90,10 +94,27 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        spinner.setSelection(0);
+
         editText_first_name= (EditText)view.findViewById(R.id.editText_first_name);
         editText_last_name=(EditText)view.findViewById(R.id.editText_last_name);
 
+        radio_button_gender = (RadioGroup)view.findViewById(R.id.radio_button_gender);
+        radio_button_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                // checkedId is the RadioButton selected
 
+                switch(checkedId)
+                {
+                    case R.id.radioButton_m:
+                        break;
+                    case R.id.radioButton_mme:
+                        break;
+                }
+            }
+        });
         return view;
     }
 
@@ -131,6 +152,7 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
