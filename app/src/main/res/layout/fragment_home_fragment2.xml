@@ -55,8 +55,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="TextView" />
+                    android:gravity="center_horizontal" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -68,7 +67,12 @@
             android:layout_weight="8"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="0.5dp"
-            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" >
+
+        </ExpandableListView>
+
+
 
     </LinearLayout>
+
 </FrameLayout>

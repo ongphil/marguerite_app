@@ -231,7 +231,8 @@
         <item>+1784</item>
         <item>+1868</item>
         <item>+1869</item>
-        <item>+1876</item></string-array>
+        <item>+1876</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

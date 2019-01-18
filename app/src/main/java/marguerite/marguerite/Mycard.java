@@ -7,27 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HomeFragment2.OnFragmentInteractionListener} interface
+ * {@link Mycard.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeFragment2#newInstance} factory method to
+ * Use the {@link Mycard#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment2 extends Fragment {
+public class Mycard extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,14 +29,7 @@ public class HomeFragment2 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-
-
-    private ExpandableListView expandableListView;
-    private ExpandableListAdapter expandableListAdapter;
-    private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
-
-    public HomeFragment2() {
+    public Mycard() {
         // Required empty public constructor
     }
 
@@ -56,11 +39,11 @@ public class HomeFragment2 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment2.
+     * @return A new instance of fragment Mycard.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment2 newInstance(String param1, String param2) {
-        HomeFragment2 fragment = new HomeFragment2();
+    public static Mycard newInstance(String param1, String param2) {
+        Mycard fragment = new Mycard();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,30 +64,7 @@ public class HomeFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View view=inflater.inflate(R.layout.fragment_home_fragment2, container, false);
-
-
-
-
-
-
-
-        expandableListView = (ExpandableListView)view.findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListDataPump.getData();
-        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail);
-        expandableListView.setAdapter(expandableListAdapter);
-
-
-
-
-
-
-
-
-
-        return view;
+        return inflater.inflate(R.layout.fragment_mycard, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

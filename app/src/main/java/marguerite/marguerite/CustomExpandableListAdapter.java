@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
@@ -15,6 +16,10 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> expandableListTitle;
     private HashMap<String, List<String>> expandableListDetail;
+
+
+    private int count=0;
+    private String temp;
 
     public CustomExpandableListAdapter(Context context, List<String> expandableListTitle,
                                        HashMap<String, List<String>> expandableListDetail) {
@@ -46,6 +51,40 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         TextView expandedListTextView = (TextView) convertView
                 .findViewById(R.id.expandedListItem);
         expandedListTextView.setText(expandedListText);
+
+
+
+        final TextView text=(TextView) convertView.findViewById(R.id.text);
+        Button plus=(Button) convertView.findViewById(R.id.buttonPlus);
+        Button minus=(Button)convertView.findViewById(R.id.buttonMinus);
+
+        plus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                count+=1;
+                temp=String.valueOf(count);
+                text.setText(temp);
+
+            }
+        });
+
+        count=0;
+
+
+
+        minus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                count-=1;
+                temp=String.valueOf(count);
+                text.setText(temp);
+
+            }
+        });
+
+        count=0;
+
+
         return convertView;
     }
 
