@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:paddingBottom="125dp"
+    tools:context=".OrderIsReadyFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Nom du restaurant"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="Morgan,"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="ta commande est prête."
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_order_number"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center_horizontal"
+        android:text="6410"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
