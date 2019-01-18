@@ -8,4 +8,8 @@
     <color name="color_text_terms_of_use">#909090</color>
     <color name="colorArrayUp">#eeeded</color>
     <color name="colorArrayBottom">#e0dfdf</color>
+    <color name="Color_card">#d7d7d7</color>
+    <color name="Color_text_card">#ffffff</color>
+    <color name="edit_text_color">#626262</color>
+    <color name="color_mes_cartes">#535353</color>
 </resources>
