@@ -13,7 +13,8 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,
         OrdersFragment.OnFragmentInteractionListener,
-        ProfileFragment.OnFragmentInteractionListener {
+        ProfileFragment.OnFragmentInteractionListener,HomeFragment2.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,
+        Mycard.OnFragmentInteractionListener, PaymentAccepted.OnFragmentInteractionListener{
 
     private ViewPager viewPager;
     private BottomNavigationView navigation;
@@ -21,7 +22,10 @@ public class MainActivity extends AppCompatActivity
     private HomeFragment homeFragment;
     private OrdersFragment ordersFragment;
     private ProfileFragment profileFragment;
-
+    private HomeFragment2 homeFragment2;
+    private SignupFragment signupFragment;
+    private Mycard mycard;
+    private PaymentAccepted p;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,10 @@ public class MainActivity extends AppCompatActivity
         homeFragment = new HomeFragment();
         ordersFragment = new OrdersFragment();
         profileFragment = new ProfileFragment();
+        homeFragment2=new HomeFragment2();
+        signupFragment=new SignupFragment();
+        mycard=new Mycard();
+        p=new PaymentAccepted();
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -44,11 +52,11 @@ public class MainActivity extends AppCompatActivity
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return homeFragment;
+                        return p;
                     case 1:
-                        return ordersFragment;
+                        return homeFragment2;
                     case 2:
-                        return profileFragment;
+                        return signupFragment;
                 }
                 return null;
             }
@@ -121,6 +129,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPageScrollStateChanged(int i) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }
