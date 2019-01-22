@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MyListAdapter extends ArrayAdapter<String> {
@@ -17,7 +16,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
 
 
     public MyListAdapter(Activity context, String[] maintitle,String[] subtitle) {
-        super(context, R.layout.background_test, maintitle);
+        super(context, R.layout.background_suggestion_restaurant, maintitle);
         // TODO Auto-generated constructor stub
 
         this.context=context;
@@ -29,7 +28,7 @@ public class MyListAdapter extends ArrayAdapter<String> {
 
     public View getView(int position,View view,ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.background_test, null,true);
+        View rowView=inflater.inflate(R.layout.background_suggestion_restaurant, null,true);
 
         TextView titleText = (TextView) rowView.findViewById(R.id.title);
 

@@ -12,4 +12,5 @@
     <color name="Color_text_card">#ffffff</color>
     <color name="edit_text_color">#626262</color>
     <color name="color_mes_cartes">#535353</color>
+    <color name="color_connexion">#37675b</color>
 </resources>

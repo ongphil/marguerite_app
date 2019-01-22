@@ -7,12 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,12 +18,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HomeFragment2.OnFragmentInteractionListener} interface
+ * {@link ToOrder.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeFragment2#newInstance} factory method to
+ * Use the {@link ToOrder#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment2 extends Fragment {
+public class ToOrder extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -46,7 +42,7 @@ public class HomeFragment2 extends Fragment {
     private List<String> expandableListTitle;
     private HashMap<String, List<String>> expandableListDetail;
 
-    public HomeFragment2() {
+    public ToOrder() {
         // Required empty public constructor
     }
 
@@ -59,8 +55,8 @@ public class HomeFragment2 extends Fragment {
      * @return A new instance of fragment HomeFragment2.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment2 newInstance(String param1, String param2) {
-        HomeFragment2 fragment = new HomeFragment2();
+    public static ToOrder newInstance(String param1, String param2) {
+        ToOrder fragment = new ToOrder();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -82,7 +78,7 @@ public class HomeFragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view=inflater.inflate(R.layout.fragment_home_fragment2, container, false);
+        View view=inflater.inflate(R.layout.fragment_to_order, container, false);
 
 
 
