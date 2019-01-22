@@ -4,9 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 
 /**
@@ -17,16 +21,20 @@ import android.view.ViewGroup;
  * Use the {@link MeansOfPaymentFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class MeansOfPaymentFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
+    private EditText editText_cc_number;
+   // private TextWatcher textWatcher= new TextWatcher();
     private OnFragmentInteractionListener mListener;
 
     public MeansOfPaymentFragment() {
@@ -64,7 +72,43 @@ public class MeansOfPaymentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_means_of_payment, container, false);
+        View view=inflater.inflate(R.layout.fragment_means_of_payment, container, false);
+        editText_cc_number=(EditText)view.findViewById(R.id.editText_cc_number);
+        editText_cc_number.addTextChangedListener(new TextWatcher() {
+
+            // Change this to what you want... ' ', '-' etc..
+            private static final char space = ' ';
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Remove spacing char
+                if (s.length() > 0 && (s.length() % 5) == 0) {
+                    final char c = s.charAt(s.length() - 1);
+                    if (space == c) {
+                        s.delete(s.length() - 1, s.length());
+                    }
+                }
+                // Insert char where needed.
+                if (s.length() > 0 && (s.length() % 5) == 0) {
+                    char c = s.charAt(s.length() - 1);
+                    // Only if its a digit where there should be a space we insert a space
+                    if (Character.isDigit(c) && TextUtils.split(s.toString(), String.valueOf(space)).length <= 3) {
+                        s.insert(s.length() - 1, String.valueOf(space));
+                    }
+                }
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,4 +149,8 @@ public class MeansOfPaymentFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+    /**
+     * Formats the watched EditText to a credit card number
+     */
+
 }
