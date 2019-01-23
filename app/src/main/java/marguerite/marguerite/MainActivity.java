@@ -11,8 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -84,6 +87,17 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         commande_commentaire = documentSnapshot.getString("Commentaire");
+                        documentSnapshot.getDocumentReference("restaurant_id").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    String nom_resto = document.getString("nom");
+                                    int s = 0;
+                                } else {
+                                }
+                            }
+                        });
                         int i = 0;
 
                     }
@@ -93,7 +107,7 @@ public class MainActivity extends AppCompatActivity
                     public void onFailure(@NonNull Exception e) {
                         int j = 0;
                     }
-                });;
+                });
 
 
 
