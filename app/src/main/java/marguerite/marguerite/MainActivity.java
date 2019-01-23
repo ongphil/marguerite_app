@@ -13,7 +13,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,
         OrdersFragment.OnFragmentInteractionListener,
-        ProfileFragment.OnFragmentInteractionListener,HomeFragment2.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,
+        ProfileFragment.OnFragmentInteractionListener,ToOrder.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,
         Mycard.OnFragmentInteractionListener, PaymentAccepted.OnFragmentInteractionListener{
 
     private ViewPager viewPager;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
     private HomeFragment homeFragment;
     private OrdersFragment ordersFragment;
     private ProfileFragment profileFragment;
-    private HomeFragment2 homeFragment2;
+    private ToOrder homeFragment2;
     private SignupFragment signupFragment;
     private Mycard mycard;
     private PaymentAccepted p;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         homeFragment = new HomeFragment();
         ordersFragment = new OrdersFragment();
         profileFragment = new ProfileFragment();
-        homeFragment2=new HomeFragment2();
+        homeFragment2=new ToOrder();
         signupFragment=new SignupFragment();
         mycard=new Mycard();
         p=new PaymentAccepted();
