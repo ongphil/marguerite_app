@@ -11,12 +11,15 @@ import android.widget.TextView;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+
 
 public class RestaurantAdapter extends ArrayAdapter<String> {
 
     private final Activity context;
-    private List<Restaurant> restaurant = new ArrayList<Restaurant>();
+    private List<Restaurant> res = new ArrayList<Restaurant>();
 
 
     public RestaurantAdapter(Activity context, ArrayList<Restaurant> restaurant ) {
@@ -24,7 +27,7 @@ public class RestaurantAdapter extends ArrayAdapter<String> {
         // TODO Auto-generated constructor stub
 
         this.context=context;
-        this.restaurant=restaurant;
+        this.res=restaurant;
 
 
 
@@ -35,13 +38,17 @@ public class RestaurantAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater=context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.background_suggestion_restaurant, null,true);
 
+
+
+        Restaurant restaurant=res.get(position);
+
         TextView titleText = (TextView) rowView.findViewById(R.id.title);
 
         TextView subtitleText = (TextView) rowView.findViewById(R.id.subtitle);
 
-        titleText.setText((map.get(document.getData().get("nom"))).toString());
+        titleText.setText(restaurant.getNom());
 
-        subtitleText.setText((map.get(document.getData().get("adresse"))).toString());
+        subtitleText.setText(restaurant.getAdresse());
 
         return rowView;
 

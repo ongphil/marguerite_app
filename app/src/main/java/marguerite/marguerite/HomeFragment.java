@@ -3,7 +3,9 @@ package marguerite.marguerite;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -28,19 +43,15 @@ public class HomeFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     ListView list;
-    String[] maintitle ={
-            "Restaurant","Restaurant",
-            "Restaurant","Restaurant",
-            "Restaurant",
-    };
-
-    String[] subtitle ={
-            "Nom, adresse restaurant","Nom, adresse restaurant",
-            "Nom, adresse restaurant","Nom, adresse restaurant",
-            "Nom, adresse restaurant",
-    };
+    RestaurantAdapter restaurantAdapter;
 
 
+    String nom;
+    String adresse;
+
+
+
+    private FirebaseFirestore firestore;
 
 
 
@@ -55,6 +66,7 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private  ArrayList<Restaurant> title;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -92,34 +104,80 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
+        final String[] temp = new String[1];
         View view;
         view=inflater.inflate(R.layout.fragment_home, container, false);
 
-
         list=(ListView)view.findViewById(R.id.list);
 
+        title =new ArrayList<>();
+
+        firestore=FirebaseFirestore.getInstance();
 
 
-        MyListAdapter adapter=new MyListAdapter(getActivity(), maintitle, subtitle);
-        list.setAdapter(adapter);
-/*
-        String[] liste = new String[]{
-                "Restaurant",
-                "Adresse",
-                " ",
-                "Restaurant",
-                "Adresse",
-                " ",
-                "Restaurant",
-                "Adresse",
-                " ",
-
-        };
-        ArrayAdapter <String> arrayAdapter=new ArrayAdapter <String>(getActivity(),R.layout.background_suggestion_restaurant,liste);
+        firestore.collection("Restaurants")
+        .get()
+        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d(TAG, document.getId() + " => " + document.getData());
 
 
-        list.setAdapter(arrayAdapter);*/
+
+                        title.add(new Restaurant((document.getData().get("nom")).toString(),(document.getData().get("adresse")).toString()));
+                        temp[0] =title.get(0).getNom().toString();
+                        restaurantAdapter=new RestaurantAdapter(getActivity(),title);
+                        list.setAdapter(restaurantAdapter);
+
+                    }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+
+
+
+        /*
+        firestore.collection("Restaurants").document("8tWygSWs1VATB4O4fSLk").get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        nom=documentSnapshot.getString("nom");
+                        adresse=documentSnapshot.getString("adresse");
+
+
+
+                        String[] maintitle ={
+                                nom,"Restaurant",
+                                "Restaurant","Restaurant",
+                                "Restaurant",
+                        };
+
+
+                        String[] subtitle ={
+                                adresse,"Nom, adresse restaurant",
+                                "Nom, adresse restaurant","Nom, adresse restaurant",
+                                "Nom, adresse restaurant",
+                        };
+
+                        MyListAdapter adapter=new MyListAdapter(getActivity(), maintitle, subtitle);
+                        list.setAdapter(adapter);
+
+                    }
+                });
+
+
+*/
+
+
+
+
+
         return view;
 
     }
