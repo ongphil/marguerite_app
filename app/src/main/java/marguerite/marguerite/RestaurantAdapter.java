@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class MyListAdapter extends ArrayAdapter<String> {
+public class RestaurantAdapter extends ArrayAdapter<String> {
 
     private final Activity context;
     private final String[] maintitle;
     private final String[] subtitle;
 
 
-    public MyListAdapter(Activity context, String[] maintitle,String[] subtitle) {
+    public RestaurantAdapter(Activity context, String[] maintitle,String[] subtitle) {
         super(context, R.layout.background_suggestion_restaurant, maintitle);
         // TODO Auto-generated constructor stub
 
