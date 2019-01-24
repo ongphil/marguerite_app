@@ -10,11 +10,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+
 public class MainActivity extends AppCompatActivity
         implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,
-        OrdersFragment.OnFragmentInteractionListener,
-        ProfileFragment.OnFragmentInteractionListener,ToOrder.OnFragmentInteractionListener,SignupFragment.OnFragmentInteractionListener,
-        Mycard.OnFragmentInteractionListener, PaymentAccepted.OnFragmentInteractionListener{
+        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,ToOrder.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
     private BottomNavigationView navigation;
@@ -22,10 +28,13 @@ public class MainActivity extends AppCompatActivity
     private HomeFragment homeFragment;
     private OrdersFragment ordersFragment;
     private ProfileFragment profileFragment;
-    private ToOrder homeFragment2;
-    private SignupFragment signupFragment;
-    private Mycard mycard;
-    private PaymentAccepted p;
+
+    private FirebaseFirestore Firestore;
+
+    /* Variables pour l'exemple d'utilisation Firebase */
+    String commande_commentaire = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +48,6 @@ public class MainActivity extends AppCompatActivity
         homeFragment = new HomeFragment();
         ordersFragment = new OrdersFragment();
         profileFragment = new ProfileFragment();
-        homeFragment2=new ToOrder();
-        signupFragment=new SignupFragment();
-        mycard=new Mycard();
-        p=new PaymentAccepted();
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -52,11 +57,11 @@ public class MainActivity extends AppCompatActivity
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return p;
+                        return homeFragment;
                     case 1:
-                        return homeFragment2;
+                        return ordersFragment;
                     case 2:
-                        return signupFragment;
+                        return profileFragment;
                 }
                 return null;
             }
@@ -66,6 +71,41 @@ public class MainActivity extends AppCompatActivity
                 return 3;
             }
         });
+
+        Firestore = FirebaseFirestore.getInstance();
+
+        Firestore.collection("Commandes")
+                .document("IsA8Djmtu6Hzt0DQo9yN")
+                //.document(User_id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        commande_commentaire = documentSnapshot.getString("Commentaire");
+                        documentSnapshot.getDocumentReference("restaurant_id").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    String nom_resto = document.getString("nom");
+                                    int s = 0;
+                                } else {
+                                }
+                            }
+                        });
+                        int i = 0;
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        int j = 0;
+                    }
+                });
+
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -132,8 +172,8 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
+            @Override
+            public void onFragmentInteraction(Uri uri) {
 
-    }
-}
+            }
+        }

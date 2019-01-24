@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "269177345595",
+    "firebase_url": "https://marguerite-b3492.firebaseio.com",
+    "project_id": "marguerite-b3492",
+    "storage_bucket": "marguerite-b3492.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269177345595:android:95dd819f9d240f46",
+        "android_client_info": {
+          "package_name": "marguerite.marguerite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269177345595-ed01467r6gfid4m699vk109cf6840f9n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKvV2h-vEMhnYlQwgcwPv_85EwjPlRVrg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
