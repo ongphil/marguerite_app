@@ -45,5 +45,5 @@ public class RestaurantAdapter extends ArrayAdapter<String> {
 
         return rowView;
 
-    };
+    }
 }
