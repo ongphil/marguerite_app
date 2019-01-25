@@ -26,7 +26,7 @@ public class ExpandableListDataPump {
 
         final  HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
-        final ArrayList<Category> category;
+        final ArrayList<MenuItem> category;
         category=new ArrayList<>();
 
         FirebaseFirestore firestore;
