@@ -97,8 +97,8 @@ public class ToOrder extends Fragment {
 
         final HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
-        final ArrayList<Category> category;
-        category=new ArrayList<>();
+        final ArrayList<MenuItem> menu;
+        menu=new ArrayList<>();
 
         final List<String> boisson = new ArrayList<String>();
         final List<String> entree = new ArrayList<String>();
@@ -119,6 +119,7 @@ public class ToOrder extends Fragment {
                                 {
                                     case "Entrée":
                                         entree.add(document.getData().get("nom").toString());
+
                                         break;
 
                                     case "Boisson":

@@ -1,12 +1,12 @@
 package marguerite.marguerite;
 
-public  class Category extends Object{
+public  class MenuItem extends Object{
 
 
     private String m_nom;
     private String m_categorie;
 
-    public Category(String nom,String categorie){
+    public MenuItem(String nom,String categorie){
 
         m_nom=nom;
         m_categorie=categorie;
