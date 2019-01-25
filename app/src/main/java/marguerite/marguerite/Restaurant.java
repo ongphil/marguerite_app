@@ -1,14 +1,20 @@
 package marguerite.marguerite;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Restaurant extends Object{
     private String m_adresse;
-    private  String m_nom;
+    private String m_nom;
+    private Map<String,Object > m_horaires;
 
 
-    public Restaurant(String nom,String adresse)
+
+    public Restaurant(String nom,String adresse, Map<String, Object> horaires)
     {
         m_adresse=adresse;
         m_nom=nom;
+        m_horaires=horaires;
     }
 
 
@@ -20,15 +26,17 @@ public class Restaurant extends Object{
     {
         return m_nom;
     }
+    public Map<String, Object> getHoraires() {return m_horaires;}
+
 
     public  void setAdresse(String new_adresse)
     {
         m_adresse=new_adresse;
     }
-
     public  void setNom(String new_nom)
     {
         m_nom=new_nom;
     }
+    public  void setHoraire(Map<String,Object> new_horaires) {m_horaires=new_horaires;}
 
 }

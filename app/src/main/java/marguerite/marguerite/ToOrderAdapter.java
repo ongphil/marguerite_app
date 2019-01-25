@@ -11,7 +11,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
+public class ToOrderAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
@@ -21,7 +21,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     private int count=0;
     private String temp;
 
-    public CustomExpandableListAdapter(Context context, List<String> expandableListTitle,
+    public ToOrderAdapter(Context context, List<String> expandableListTitle,
                                        HashMap<String, List<String>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
