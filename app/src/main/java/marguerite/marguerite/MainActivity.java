@@ -8,25 +8,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,
-        OrdersFragment.OnFragmentInteractionListener,
-        ProfileFragment.OnFragmentInteractionListener {
+        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,ToOrder.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
     private BottomNavigationView navigation;
@@ -39,6 +33,7 @@ public class MainActivity extends AppCompatActivity
 
     /* Variables pour l'exemple d'utilisation Firebase */
     String commande_commentaire = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,4 +172,8 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-}
+            @Override
+            public void onFragmentInteraction(Uri uri) {
+
+            }
+        }

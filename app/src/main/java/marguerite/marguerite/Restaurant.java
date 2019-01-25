@@ -1,8 +1,15 @@
 package marguerite.marguerite;
 
-public class Restaurant {
+public class Restaurant extends Object{
     private String m_adresse;
     private  String m_nom;
+
+
+    public Restaurant(String nom,String adresse)
+    {
+        m_adresse=adresse;
+        m_nom=nom;
+    }
 
 
     public String getAdresse()
