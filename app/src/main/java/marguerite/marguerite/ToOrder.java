@@ -3,16 +3,26 @@ package marguerite.marguerite;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -80,21 +90,69 @@ public class ToOrder extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_to_order, container, false);
 
-
-
-
-
-
-
         expandableListView = (ExpandableListView)view.findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListDataPump.getData();
-        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail);
-        expandableListView.setAdapter(expandableListAdapter);
+
+        FirebaseFirestore firestore;
+        firestore=FirebaseFirestore.getInstance();
+
+        final HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
+
+        final ArrayList<Category> category;
+        category=new ArrayList<>();
+
+        final List<String> boisson = new ArrayList<String>();
+        final List<String> entree = new ArrayList<String>();
+        final List<String> plat = new ArrayList<String>();
+        final List<String> dessert = new ArrayList<String>();
 
 
+        firestore.collection("Restaurants").document("8tWygSWs1VATB4O4fSLk").collection("Carte").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+
+                                String nom=document.getData().get("categorie").toString();
+                                switch(nom)
+                                {
+                                    case "Entrée":
+                                        entree.add(document.getData().get("nom").toString());
+                                        break;
+
+                                    case "Boisson":
+                                        boisson.add(document.getData().get("nom").toString());
+                                        break;
+
+                                    case "Plat":
+                                        plat.add(document.getData().get("nom").toString());
+                                        break;
+
+                                    case "Dessert":
+                                        dessert.add(document.getData().get("nom").toString());
+                                        break;
+                                    default:
+                                        break;
+
+                                }
+                                expandableListDetail.put("BOISSONS", boisson);
+                                expandableListDetail.put("ENTREES", entree);
+                                expandableListDetail.put("PLATS", plat);
+                                expandableListDetail.put("DESSERTS", dessert);
+
+                            }
 
 
+                            expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+                            expandableListAdapter = new ToOrderAdapter(getActivity(), expandableListTitle, expandableListDetail);
+                            expandableListView.setAdapter(expandableListAdapter);
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
 
 
