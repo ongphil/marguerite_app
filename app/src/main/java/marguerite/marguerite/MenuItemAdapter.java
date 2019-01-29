@@ -11,18 +11,18 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ToOrderAdapter extends BaseExpandableListAdapter {
+public class MenuItemAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private HashMap<String, List<MenuItem>> expandableListDetail;
 
 
     private int count=0;
     private String temp;
 
-    public ToOrderAdapter(Context context, List<String> expandableListTitle,
-                                       HashMap<String, List<String>> expandableListDetail) {
+    public MenuItemAdapter(Context context, List<String> expandableListTitle,
+                           HashMap<String, List<MenuItem>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -112,16 +112,21 @@ public class ToOrderAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
+
         String listTitle = (String) getGroup(listPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.background_category_title_of_the_product, null);
         }
+
+
         TextView listTitleTextView = (TextView) convertView
                 .findViewById(R.id.listTitle);
+
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
+
         return convertView;
     }
 

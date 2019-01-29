@@ -95,15 +95,14 @@ public class ToOrder extends Fragment {
         FirebaseFirestore firestore;
         firestore=FirebaseFirestore.getInstance();
 
-        final HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
+        final HashMap<String, List<MenuItem>> expandableListDetail = new HashMap<String, List<MenuItem>>();
 
-        final ArrayList<MenuItem> menu;
-        menu=new ArrayList<>();
+        final ArrayList<MenuItem> menu = new ArrayList<>();
 
-        final List<String> boisson = new ArrayList<String>();
-        final List<String> entree = new ArrayList<String>();
-        final List<String> plat = new ArrayList<String>();
-        final List<String> dessert = new ArrayList<String>();
+        final List<MenuItem> boisson = new ArrayList<MenuItem>();
+        final List<MenuItem> entree = new ArrayList<MenuItem>();
+        final List<MenuItem> plat = new ArrayList<MenuItem>();
+        final List<MenuItem> dessert = new ArrayList<MenuItem>();
 
 
         firestore.collection("Restaurants").document("8tWygSWs1VATB4O4fSLk").collection("Carte").get()
@@ -115,23 +114,34 @@ public class ToOrder extends Fragment {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
                                 String nom=document.getData().get("categorie").toString();
+                                Double prix_unitaire_cast;
+                                prix_unitaire_cast= Double.parseDouble(document.getData().get("prix_unitaire").toString());
+                                boolean temp =true;
                                 switch(nom)
                                 {
                                     case "Entrée":
-                                        entree.add(document.getData().get("nom").toString());
-
+                                        entree.add(new MenuItem((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                                (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
+                                                prix_unitaire_cast));
                                         break;
 
                                     case "Boisson":
-                                        boisson.add(document.getData().get("nom").toString());
+                                        boisson.add(new MenuItem((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                                (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
+                                                prix_unitaire_cast));
                                         break;
 
                                     case "Plat":
-                                        plat.add(document.getData().get("nom").toString());
+
+                                        plat.add(new MenuItem((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                                (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
+                                                prix_unitaire_cast));
                                         break;
 
                                     case "Dessert":
-                                        dessert.add(document.getData().get("nom").toString());
+                                        dessert.add(new MenuItem((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                                (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
+                                                prix_unitaire_cast));
                                         break;
                                     default:
                                         break;
@@ -146,7 +156,7 @@ public class ToOrder extends Fragment {
 
 
                             expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-                            expandableListAdapter = new ToOrderAdapter(getActivity(), expandableListTitle, expandableListDetail);
+                            expandableListAdapter = new MenuItemAdapter(getActivity(), expandableListTitle, expandableListDetail);
                             expandableListView.setAdapter(expandableListAdapter);
 
                         } else {

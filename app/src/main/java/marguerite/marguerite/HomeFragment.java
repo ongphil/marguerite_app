@@ -112,6 +112,7 @@ public class HomeFragment extends Fragment {
 
         title =new ArrayList<>();
 
+
         firestore=FirebaseFirestore.getInstance();
 
 
@@ -125,8 +126,8 @@ public class HomeFragment extends Fragment {
                         Log.d(TAG, document.getId() + " => " + document.getData());
 
 
-
-                        title.add(new Restaurant((document.getData().get("nom")).toString(),(document.getData().get("adresse")).toString()));
+                        Map<String,Object> horaires=(Map<String,Object>) document.getData().get("horaires");
+                        title.add(new Restaurant((document.getData().get("nom")).toString(),(document.getData().get("adresse")).toString(),horaires));
                         temp[0] =title.get(0).getNom().toString();
                         restaurantAdapter=new RestaurantAdapter(getActivity(),title);
                         list.setAdapter(restaurantAdapter);
