@@ -13,4 +13,6 @@
     <color name="edit_text_color">#626262</color>
     <color name="color_mes_cartes">#535353</color>
     <color name="color_connexion">#37675b</color>
+    <color name="Color_my_order">#d4d4d4</color>
+    <color name="Color_statut_prete">#14b133</color>
 </resources>
