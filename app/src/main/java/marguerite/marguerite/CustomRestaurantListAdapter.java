@@ -1,7 +1,5 @@
 package marguerite.marguerite;
 
-import java.util.HashMap;
-import java.util.List;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -11,18 +9,22 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MenuItemAdapter extends BaseExpandableListAdapter {
+import java.util.HashMap;
+import java.util.List;
+
+
+public class CustomRestaurantListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<MenuItem>> expandableListDetail;
+    private HashMap<String, List<Restaurant>> expandableListDetail;
 
 
     private int count=0;
     private String temp;
 
-    public MenuItemAdapter(Context context, List<String> expandableListTitle,
-                           HashMap<String, List<MenuItem>> expandableListDetail) {
+    public CustomRestaurantListAdapter(Context context, List<String> expandableListTitle,
+                           HashMap<String, List<Restaurant>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -42,7 +44,7 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        final MenuItem expandedListText = (MenuItem) getChild(listPosition, expandedListPosition);
+        final String expandedListText = (String) getChild(listPosition, expandedListPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -50,7 +52,7 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
         }
         TextView expandedListTextView = (TextView) convertView
                 .findViewById(R.id.expandedListItem);
-        expandedListTextView.setText(expandedListText.getNom());
+        expandedListTextView.setText(expandedListText);
 
 
 
@@ -117,7 +119,7 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.background_category_title_of_the_product, null);
+            convertView = layoutInflater.inflate(R.layout.background_suggestion_restaurant, null);
         }
 
 

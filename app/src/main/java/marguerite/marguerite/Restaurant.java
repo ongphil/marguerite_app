@@ -6,7 +6,7 @@ import java.util.Map;
 public class Restaurant extends Object{
     private String m_adresse;
     private String m_nom;
-    private Map<String,Object > m_horaires;
+    private Map<String,Object> m_horaires;
 
 
 

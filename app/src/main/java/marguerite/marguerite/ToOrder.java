@@ -50,7 +50,7 @@ public class ToOrder extends Fragment {
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
     private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private HashMap<String, List<MenuItem>> expandableListDetail;
 
     public ToOrder() {
         // Required empty public constructor
