@@ -2,16 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/Color_my_order"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_height="wrap_content"
+        android:background="@color/Color_my_order"
+        android:paddingLeft="20dp"
+        android:paddingTop="15dp"
         android:text="Marguerite"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#4d4d4d"
@@ -19,9 +20,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@color/Color_my_order"
+        android:orientation="horizontal"
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/date"
@@ -48,21 +50,33 @@
             android:text="25€"
             android:textStyle="bold|italic" />
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:paddingBottom="200dp"
-            app:srcCompat="@drawable/icon_arrow" />
-
     </LinearLayout>
 
-    <View
-        android:id="@+id/divider3"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="?android:attr/listDivider" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:background="@color/Divider" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+    </LinearLayout>
 
 </LinearLayout>

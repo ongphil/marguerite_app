@@ -24,7 +24,7 @@ import java.util.Calendar;
 public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
     private final Context context;
-    private List<Restaurant> res = new ArrayList<Restaurant>();
+    private List<Restaurant> res;
 
 
     public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurant ) {
@@ -40,7 +40,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     public View getView(int position, View view, ViewGroup parent) {
 
         View rowView = view;
-
+        res= new ArrayList<>();
 
         if(rowView == null)
             rowView = LayoutInflater.from(context).inflate(R.layout.background_suggestion_restaurant,parent,false);
