@@ -28,12 +28,12 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ToOrder.OnFragmentInteractionListener} interface
+ * {@link ToOrderFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ToOrder#newInstance} factory method to
+ * Use the {@link ToOrderFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ToOrder extends Fragment {
+public class ToOrderFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -52,7 +52,7 @@ public class ToOrder extends Fragment {
     private List<String> expandableListTitle;
     private HashMap<String, List<MenuItem>> expandableListDetail;
 
-    public ToOrder() {
+    public ToOrderFragment() {
         // Required empty public constructor
     }
 
@@ -65,8 +65,8 @@ public class ToOrder extends Fragment {
      * @return A new instance of fragment HomeFragment2.
      */
     // TODO: Rename and change types and number of parameters
-    public static ToOrder newInstance(String param1, String param2) {
-        ToOrder fragment = new ToOrder();
+    public static ToOrderFragment newInstance(String param1, String param2) {
+        ToOrderFragment fragment = new ToOrderFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

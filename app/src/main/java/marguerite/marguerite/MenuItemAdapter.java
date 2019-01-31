@@ -20,7 +20,6 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
 
     private int count=0;
     private String temp;
-
     public MenuItemAdapter(Context context, List<String> expandableListTitle,
                            HashMap<String, List<MenuItem>> expandableListDetail) {
         this.context = context;
@@ -57,13 +56,15 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
         final TextView text=(TextView) convertView.findViewById(R.id.text);
         Button plus=(Button) convertView.findViewById(R.id.buttonPlus);
         Button minus=(Button)convertView.findViewById(R.id.buttonMinus);
+        final TextView quantity= (TextView)convertView.findViewById(R.id.quantity);
 
         plus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 count+=1;
                 temp=String.valueOf(count);
-                text.setText(temp);
+                expandedListText.setQuantite(count);
+                quantity.setText(temp);
 
             }
         });
@@ -77,7 +78,8 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
 
                 count-=1;
                 temp=String.valueOf(count);
-                text.setText(temp);
+                expandedListText.setQuantite(count);
+                quantity.setText(temp);
 
             }
         });
