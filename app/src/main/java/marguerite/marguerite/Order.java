@@ -7,25 +7,18 @@ import java.util.Map;
 
 public class Order {
 
+    //Attributs
     private String m_commentaire;
     private  String m_statut;
     private int m_creneau_attente;
     private double m_prix_total;
-    private Map<String,Timestamp> date;
+    private Map<String,Object> m_date;
     private DocumentReference m_restaurant_id;
     private DocumentReference m_user_id;
 
-
-    public Order()
-    {
-
-    }
-
-    public Order(String statut)
-    {
-        m_statut=statut;
-    }
-    public Order(String commentaire, String statut, int creneau_attente,double prix_total, DocumentReference restaurant_id, DocumentReference user_id)
+    //Constructeur
+    public Order(String commentaire, String statut, int creneau_attente,double prix_total,
+                 DocumentReference restaurant_id, DocumentReference user_id,Map<String,Object> date)
     {
         m_commentaire=commentaire;
         m_statut=statut;
@@ -33,8 +26,10 @@ public class Order {
         m_prix_total=prix_total;
         m_restaurant_id=restaurant_id;
         m_user_id=user_id;
+        m_date=date;
     }
 
+    //Getter et Setter
     public String getCommentaire()
     {
         return m_commentaire;
@@ -55,9 +50,9 @@ public class Order {
         return m_prix_total;
     }
 
-    public Map<String, Timestamp> getDate()
+    public Map<String, Object> getDate()
     {
-        return date;
+        return m_date;
     }
 
     public void setStatut(String nouv_statut)

@@ -15,70 +15,25 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/my_orders"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Mes commandes" />
+                android:text="Mes commandes"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView10"
+            <ExpandableListView
+                android:id="@+id/expandable_status"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Prête" />
+                android:layout_height="25dp"
+                android:layout_weight="5"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="1dp"
+                android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft">
 
-            <ListView
-                android:id="@+id/list_view_1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-            </ListView>
-
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="En préparation" />
-
-            <ListView
-                android:id="@+id/list_view_2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <View
-                android:id="@+id/divider5"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="?android:attr/listDivider" />
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Terminée" />
-
-            <ListView
-                android:id="@+id/list_view_3"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+            </ExpandableListView>
 
         </LinearLayout>
 

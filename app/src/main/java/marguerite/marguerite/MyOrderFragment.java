@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,6 +20,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -40,14 +45,14 @@ public class MyOrderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    MyOrderAdapter myOrderAdapter;
-    private FirebaseFirestore firestore;
-    ListView list_view_1;
-    ListView list_view_2;
-    ListView list_view_3;
-    private ArrayList<Order>order;
-
     private OnFragmentInteractionListener mListener;
+
+
+
+    private ExpandableListView expandableListView;
+    private ExpandableListAdapter expandableListAdapter;
+    private List<String> expandableListTitle;
+    private HashMap<String, List<Order>> expandableListDetail;
 
     public MyOrderFragment() {
         // Required empty public constructor
@@ -59,7 +64,7 @@ public class MyOrderFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MyOrderFragment.
+     * @return A new instance of fragment HomeFragment2.
      */
     // TODO: Rename and change types and number of parameters
     public static MyOrderFragment newInstance(String param1, String param2) {
@@ -84,17 +89,24 @@ public class MyOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view=inflater.inflate(R.layout.fragment_my_order, container, false);
 
-        list_view_1=(ListView)view.findViewById(R.id.list_view_1);
-        list_view_2=(ListView)view.findViewById(R.id.list_view_2);
-        list_view_3=(ListView)view.findViewById(R.id.list_view_3);
+        expandableListView = (ExpandableListView)view.findViewById(R.id.expandable_status);
 
-        order=new ArrayList<>();
+        FirebaseFirestore firestore;
         firestore=FirebaseFirestore.getInstance();
 
-        firestore.collection("Commandes")
-                .get()
+        final HashMap<String, List<Order>> expandableListDetail = new HashMap<String, List<Order>>();
+
+
+        final ArrayList<Order> orders = new ArrayList<>();
+
+        final List<Order> prete = new ArrayList<>();
+        final List<Order> en_prepa = new ArrayList<>();
+        final List<Order> terminee = new ArrayList<>();
+
+        firestore.collection("Commandes").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -102,22 +114,66 @@ public class MyOrderFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
+                               String statut=document.getData().get("statut").toString();
 
+                               //Cast
+                               int cast_creneau;
+                               cast_creneau=Integer.parseInt(document.getData().get("creneau_attente").toString());
 
-                                order.add(new Order((document.getData().get("Statut")).toString()));
-                                String temp=document.getData().get("Statut").toString();
-                                myOrderAdapter=new MyOrderAdapter(getActivity(),order);
-                                list_view_1.setAdapter(myOrderAdapter);
+                               double cast_prix_total;
+                               cast_prix_total=Double.parseDouble(document.getData().get("prix_total").toString());
 
+                                Map<String,Object> date=(Map<String,Object>) document.getData().get("date");
+
+                                //Ajout des commandes selon son statut; prête, en prépa ou terminée
+                               switch(statut)
+                               {
+                                   case "Prete":
+                                       prete.add(new Order((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
+                                               cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
+                                               (document.getDocumentReference("utilisateur_id")),date));
+                                       break;
+
+                                   case "En preparation":
+                                       en_prepa.add(new Order((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
+                                               cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
+                                               (document.getDocumentReference("utilisateur_id")),date));
+                                       break;
+                                   case"Terminee":
+                                       terminee.add(new Order((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
+                                               cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
+                                               (document.getDocumentReference("utilisateur_id")),date));
+                                       break;
+                                   default:
+                                       break;
+
+                               }
+
+                               //Ajout dans l'expandableListView
+                                expandableListDetail.put("Prete", prete);
+                                expandableListDetail.put("En preparation", en_prepa);
+                                expandableListDetail.put("Terminee", terminee);
 
 
                             }
+
+                            //Adapteur dans le layout
+                            expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+                            expandableListAdapter = new MyOrderAdapter(getActivity(), expandableListTitle, expandableListDetail);
+                            expandableListView.setAdapter(expandableListAdapter);
+
+
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
-        return  view;
+
+
+
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

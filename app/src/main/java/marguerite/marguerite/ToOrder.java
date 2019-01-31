@@ -97,6 +97,7 @@ public class ToOrder extends Fragment {
 
         final HashMap<String, List<MenuItem>> expandableListDetail = new HashMap<String, List<MenuItem>>();
 
+
         final ArrayList<MenuItem> menu = new ArrayList<>();
 
         final List<MenuItem> boisson = new ArrayList<MenuItem>();
@@ -158,6 +159,7 @@ public class ToOrder extends Fragment {
                             expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
                             expandableListAdapter = new MenuItemAdapter(getActivity(), expandableListTitle, expandableListDetail);
                             expandableListView.setAdapter(expandableListAdapter);
+                            int i=0;
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

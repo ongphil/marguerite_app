@@ -1,10 +1,12 @@
 package marguerite.marguerite;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -16,6 +18,8 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> expandableListTitle;
     private HashMap<String, List<MenuItem>> expandableListDetail;
+    private List<MenuItem> m_test=new ArrayList<>();
+
 
 
     private int count=0;
@@ -26,7 +30,10 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
+
     }
+
+
 
     @Override
     public Object getChild(int listPosition, int expandedListPosition) {
@@ -43,6 +50,7 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         final String expandedListText = (String) getChild(listPosition, expandedListPosition);
+        //MenuItem david=m_test.get(listPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -51,6 +59,7 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
         TextView expandedListTextView = (TextView) convertView
                 .findViewById(R.id.expandedListItem);
         expandedListTextView.setText(expandedListText);
+
 
 
 
