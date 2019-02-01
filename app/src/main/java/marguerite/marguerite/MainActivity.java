@@ -19,8 +19,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class MainActivity extends AppCompatActivity
-        implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,
-        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,ToOrder.OnFragmentInteractionListener {
+        implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,RootHomeFragment.OnFragmentInteractionListener,
+        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,ToOrderFragment.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
     private BottomNavigationView navigation;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
     private HomeFragment homeFragment;
     private OrdersFragment ordersFragment;
     private ProfileFragment profileFragment;
-    private ToOrder toorder;
+    private ToOrderFragment toorder;
 
     private FirebaseFirestore Firestore;
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         homeFragment = new HomeFragment();
         ordersFragment = new OrdersFragment();
         profileFragment = new ProfileFragment();
-        toorder=new ToOrder();
+        toorder=new ToOrderFragment();
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return toorder;
+                        return new RootHomeFragment();
                     case 1:
                         return ordersFragment;
                     case 2:

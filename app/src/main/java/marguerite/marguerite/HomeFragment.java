@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -128,6 +130,29 @@ public class HomeFragment extends Fragment {
                         temp[0] =title.get(0).getNom().toString();
                         restaurantAdapter=new RestaurantAdapter(getActivity(),title);
                         list.setAdapter(restaurantAdapter);
+
+                        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            public void onItemClick(AdapterView<?> parent, View view,
+                                                    int position, long id) {
+                                FragmentTransaction trans = getFragmentManager()
+                                        .beginTransaction();
+                                /*
+                                 * IMPORTANT: We use the "root frame" defined in
+                                 * "root_fragment.xml" as the reference to replace fragment
+                                 */
+                                trans.replace(R.id.root_home_fragment, new ToOrderFragment());
+
+                                /*
+                                 * IMPORTANT: The following lines allow us to add the fragment
+                                 * to the stack and return to it later, by pressing back
+                                 */
+                                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                trans.addToBackStack(null);
+
+                                trans.commit();
+                            }
+                            }
+                            );
                         int i=0;
 
                     }
