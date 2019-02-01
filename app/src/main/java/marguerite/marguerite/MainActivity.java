@@ -14,13 +14,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class MainActivity extends AppCompatActivity
         implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,
-        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,ToOrder.OnFragmentInteractionListener {
+        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,
+        MyOrderFragment.OnFragmentInteractionListener,ToOrderFragment.OnFragmentInteractionListener,
+        SignupFragment.OnFragmentInteractionListener{
 
     private ViewPager viewPager;
     private BottomNavigationView navigation;
@@ -28,7 +31,10 @@ public class MainActivity extends AppCompatActivity
     private HomeFragment homeFragment;
     private OrdersFragment ordersFragment;
     private ProfileFragment profileFragment;
-    private ToOrder toorder;
+    private MyOrderFragment myOrderFragment;
+    private ToOrderFragment toOrderFragment;
+    private SignupFragment signupFragment;
+
 
     private FirebaseFirestore Firestore;
 
@@ -49,7 +55,10 @@ public class MainActivity extends AppCompatActivity
         homeFragment = new HomeFragment();
         ordersFragment = new OrdersFragment();
         profileFragment = new ProfileFragment();
-        toorder=new ToOrder();
+        myOrderFragment = new MyOrderFragment();
+        toOrderFragment=new ToOrderFragment();
+        signupFragment=new SignupFragment();
+
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -59,11 +68,11 @@ public class MainActivity extends AppCompatActivity
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return toorder;
-                    case 1:
-                        return ordersFragment;
-                    case 2:
                         return profileFragment;
+                    case 1:
+                        return signupFragment;
+                    case 2:
+                        return toOrderFragment;
                 }
                 return null;
             }
@@ -84,7 +93,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         commande_commentaire = documentSnapshot.getString("Commentaire");
-                        documentSnapshot.getDocumentReference("restaurant_id").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        DocumentReference test = documentSnapshot.getDocumentReference("restaurant_id");
+                        test.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 DocumentSnapshot document = task.getResult();
