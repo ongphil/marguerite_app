@@ -128,6 +128,7 @@ public class HomeFragment extends Fragment {
                         temp[0] =title.get(0).getNom().toString();
                         restaurantAdapter=new RestaurantAdapter(getActivity(),title);
                         list.setAdapter(restaurantAdapter);
+                        int i=0;
 
                     }
                 } else {

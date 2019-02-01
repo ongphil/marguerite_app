@@ -1,20 +1,31 @@
 package marguerite.marguerite;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.telephony.mbms.StreamingServiceInfo;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -47,6 +58,8 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
     private RadioGroup radio_button_gender;
     private RadioButton button_m;
     private  RadioButton button_mme;
+
+    private Button continuer;
 
 
     private OnFragmentInteractionListener mListener;
@@ -115,7 +128,95 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
                 }
             }
         });
+
+        continuer = (Button)view.findViewById(R.id.button_continuer);
+
+        continuer.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                // custom dialog
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.background_add_card);
+                Window window=dialog.getWindow();
+                window.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+
+
+
+
+                // set the custom dialog components - text, image and button
+
+                dialog.show();
+            }
+        });
+       /* continuer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });*/
         return view;
+    }
+
+    public void openDialog() {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+
+/*
+        LinearLayout layout=new LinearLayout(getActivity());
+
+
+        // Set Custom Title
+        TextView title = new TextView(getActivity());
+
+        // Title Properties
+        title.setText("Bonjour Morgan");
+        title.setPadding(10, 10, 10, 10);   // Set Position
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(Color.BLACK);
+        title.setTextSize(20);
+        alertDialog.setCustomTitle(title);
+
+        // Set Message
+        TextView msg = new TextView(getActivity());
+        // Message Properties
+        msg.setText("Veux-tu ajouter un moyen de paiement maintenant ? ");
+        msg.setGravity(Gravity.CENTER_HORIZONTAL);
+        msg.setTextColor(Color.BLACK);
+        alertDialog.setView(msg);
+
+        // Set Button
+        // you can more buttons
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Ajouter", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Perform Action on Button
+            }
+        });
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"Plus tard", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Perform Action on Button
+            }
+        });
+
+        new Dialog(getActivity());
+        alertDialog.show();
+
+
+        final Button ajouter = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) ajouter.getLayoutParams();
+        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+        ajouter.setPadding(50, 10, 10, 10);   // Set Position
+        ajouter.setTextColor(Color.BLUE);
+        ajouter.setLayoutParams(neutralBtnLP);
+
+        final Button plus_tard = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) ajouter.getLayoutParams();
+        negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
+        plus_tard.setTextColor(Color.RED);
+        plus_tard.setLayoutParams(negBtnLP);*/
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -164,7 +265,7 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
