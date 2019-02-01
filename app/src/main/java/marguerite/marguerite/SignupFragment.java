@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -141,6 +142,7 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
                 dialog.setContentView(R.layout.background_add_card);
                 Window window=dialog.getWindow();
                 window.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
 

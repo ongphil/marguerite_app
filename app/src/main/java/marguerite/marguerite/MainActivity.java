@@ -10,37 +10,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class MainActivity extends AppCompatActivity
-        implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,
-        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,
-        MyOrderFragment.OnFragmentInteractionListener,ToOrderFragment.OnFragmentInteractionListener,
-        SignupFragment.OnFragmentInteractionListener{
+        implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,RootHomeFragment.OnFragmentInteractionListener, RootOrdersFragment.OnFragmentInteractionListener, MyOrderFragment.OnFragmentInteractionListener,
+        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,ToOrderFragment.OnFragmentInteractionListener, SignupFragment.OnFragmentInteractionListener{
 
     private ViewPager viewPager;
     private BottomNavigationView navigation;
 
-    private HomeFragment homeFragment;
-    private OrdersFragment ordersFragment;
-    private ProfileFragment profileFragment;
-    private MyOrderFragment myOrderFragment;
-    private ToOrderFragment toOrderFragment;
-    private SignupFragment signupFragment;
-
 
     private FirebaseFirestore Firestore;
-
-    /* Variables pour l'exemple d'utilisation Firebase */
-    String commande_commentaire = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +33,6 @@ public class MainActivity extends AppCompatActivity
 
         setTitle("Accueil");
 
-        homeFragment = new HomeFragment();
-        ordersFragment = new OrdersFragment();
-        profileFragment = new ProfileFragment();
-        myOrderFragment = new MyOrderFragment();
-        toOrderFragment=new ToOrderFragment();
-        signupFragment=new SignupFragment();
-
-
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -68,11 +41,11 @@ public class MainActivity extends AppCompatActivity
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return profileFragment;
+                        return new RootHomeFragment();
                     case 1:
-                        return signupFragment;
+                        return new RootOrdersFragment();
                     case 2:
-                        return toOrderFragment;
+                        return new ProfileFragment();
                 }
                 return null;
             }
@@ -82,39 +55,6 @@ public class MainActivity extends AppCompatActivity
                 return 3;
             }
         });
-
-        Firestore = FirebaseFirestore.getInstance();
-
-        Firestore.collection("Commandes")
-                .document("IsA8Djmtu6Hzt0DQo9yN")
-                //.document(User_id)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        commande_commentaire = documentSnapshot.getString("Commentaire");
-                        DocumentReference test = documentSnapshot.getDocumentReference("restaurant_id");
-                        test.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                DocumentSnapshot document = task.getResult();
-                                if (document.exists()) {
-                                    String nom_resto = document.getString("nom");
-                                    int s = 0;
-                                } else {
-                                }
-                            }
-                        });
-                        int i = 0;
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        int j = 0;
-                    }
-                });
 
 
 
