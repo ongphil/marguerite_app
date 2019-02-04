@@ -11,21 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
@@ -65,7 +59,7 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private  ArrayList<Restaurant> title;
+    private  ArrayList<RestaurantClass> title;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -126,7 +120,7 @@ public class HomeFragment extends Fragment {
 
 
                         Map<String,Object> horaires=(Map<String,Object>) document.getData().get("horaires");
-                        title.add(new Restaurant((document.getData().get("nom")).toString(),(document.getData().get("adresse")).toString(),horaires));
+                        title.add(new RestaurantClass((document.getData().get("nom")).toString(),(document.getData().get("adresse")).toString(),horaires));
                         temp[0] =title.get(0).getNom().toString();
                         restaurantAdapter=new RestaurantAdapter(getActivity(),title);
                         list.setAdapter(restaurantAdapter);

@@ -3,14 +3,14 @@ package marguerite.marguerite;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Restaurant extends Object{
+public class RestaurantClass extends Object{
     private String m_adresse;
     private String m_nom;
     private Map<String,Object> m_horaires;
 
 
 
-    public Restaurant(String nom,String adresse, Map<String, Object> horaires)
+    public RestaurantClass(String nom, String adresse, Map<String, Object> horaires)
     {
         m_adresse=adresse;
         m_nom=nom;

@@ -50,7 +50,7 @@ public class ToOrderFragment extends Fragment {
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
     private List<String> expandableListTitle;
-    private HashMap<String, List<MenuItem>> expandableListDetail;
+    private HashMap<String, List<MenuItemClass>> expandableListDetail;
 
     public ToOrderFragment() {
         // Required empty public constructor
@@ -95,15 +95,15 @@ public class ToOrderFragment extends Fragment {
         FirebaseFirestore firestore;
         firestore=FirebaseFirestore.getInstance();
 
-        final HashMap<String, List<MenuItem>> expandableListDetail = new HashMap<String, List<MenuItem>>();
+        final HashMap<String, List<MenuItemClass>> expandableListDetail = new HashMap<String, List<MenuItemClass>>();
 
 
-        final ArrayList<MenuItem> menu = new ArrayList<>();
+        final ArrayList<MenuItemClass> menu = new ArrayList<>();
 
-        final List<MenuItem> boisson = new ArrayList<MenuItem>();
-        final List<MenuItem> entree = new ArrayList<MenuItem>();
-        final List<MenuItem> plat = new ArrayList<MenuItem>();
-        final List<MenuItem> dessert = new ArrayList<MenuItem>();
+        final List<MenuItemClass> boisson = new ArrayList<MenuItemClass>();
+        final List<MenuItemClass> entree = new ArrayList<MenuItemClass>();
+        final List<MenuItemClass> plat = new ArrayList<MenuItemClass>();
+        final List<MenuItemClass> dessert = new ArrayList<MenuItemClass>();
 
 
         firestore.collection("Restaurants").document("8tWygSWs1VATB4O4fSLk").collection("Carte").get()
@@ -121,26 +121,26 @@ public class ToOrderFragment extends Fragment {
                                 switch(nom)
                                 {
                                     case "Entrée":
-                                        entree.add(new MenuItem((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                        entree.add(new MenuItemClass((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
                                                 (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
                                                 prix_unitaire_cast));
                                         break;
 
                                     case "Boisson":
-                                        boisson.add(new MenuItem((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                        boisson.add(new MenuItemClass((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
                                                 (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
                                                 prix_unitaire_cast));
                                         break;
 
                                     case "Plat":
 
-                                        plat.add(new MenuItem((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                        plat.add(new MenuItemClass((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
                                                 (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
                                                 prix_unitaire_cast));
                                         break;
 
                                     case "Dessert":
-                                        dessert.add(new MenuItem((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                        dessert.add(new MenuItemClass((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
                                                 (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
                                                 prix_unitaire_cast));
                                         break;
