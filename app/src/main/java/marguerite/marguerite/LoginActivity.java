@@ -89,9 +89,8 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
 
                 Intent sendToSignUpActivity = new Intent(LoginActivity.this,SignUpActivity.class);
-                LoginActivity.this.startActivity(sendToSignUpActivity);
+                startActivity(sendToSignUpActivity);
                 finish();
-                int k=0;
             }
         });
     }

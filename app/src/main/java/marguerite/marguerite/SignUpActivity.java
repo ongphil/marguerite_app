@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -67,50 +68,20 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         continuer = (Button)findViewById(R.id.button_continuer);
-        int y=0;
-        /*continuer.setOnClickListener(new View.OnClickListener() {
+        continuer.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
                 // custom dialog
-                final Dialog dialog = new Dialog(getActivity());
+                final Dialog dialog = new Dialog(SignUpActivity.this);
                 dialog.setContentView(R.layout.background_add_card);
                 Window window=dialog.getWindow();
                 window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
-
-
-
-                // set the custom dialog components - text, image and button
-
                 dialog.show();
-            }
-        });*/
-        ajouter=(Button)findViewById(R.id.button_add_card);
-        ajouter.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-               /* FragmentTransaction trans = getFragmentManager()
-                        .beginTransaction();
-                /*
-                 * IMPORTANT: We use the "root frame" defined in
-                 * "root_fragment.xml" as the reference to replace fragment
-                 */
-               /* trans.replace(R.id.root_home_fragment, new ToOrderFragment());
-
-                /*
-                 * IMPORTANT: The following lines allow us to add the fragment
-                 * to the stack and return to it later, by pressing back
-                 */
-                /*trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                trans.addToBackStack(null);
-
-                trans.commit();*/
             }
         });
 
