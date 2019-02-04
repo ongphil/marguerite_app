@@ -1,6 +1,6 @@
 package marguerite.marguerite;
 
-public  class MenuItem extends Object{
+public  class MenuItemClass extends Object{
 
 
     private String m_nom;
@@ -10,11 +10,11 @@ public  class MenuItem extends Object{
     private Double m_prix_unitaire;
     private Integer m_quantite;
 
-    public MenuItem(String nom, String categorie, String description, String disponibilite, Double prix_unitaire) {
+    public MenuItemClass(String nom, String categorie, String description, String disponibilite, Double prix_unitaire) {
         this(nom, categorie, description, disponibilite, prix_unitaire, 0);
     }
 
-    public MenuItem(String nom, String categorie, String description, String disponibilite, Double prix_unitaire, Integer quantite){
+    public MenuItemClass(String nom, String categorie, String description, String disponibilite, Double prix_unitaire, Integer quantite){
 
         m_nom=nom;
         m_categorie=categorie;

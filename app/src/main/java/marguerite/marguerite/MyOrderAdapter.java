@@ -2,20 +2,14 @@ package marguerite.marguerite;
 
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,11 +17,11 @@ public class MyOrderAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<Order>> expandableListDetail;
+    private HashMap<String, List<OrderClass>> expandableListDetail;
 
 
     public MyOrderAdapter(Context context, List<String> expandableListTitle,
-                           HashMap<String, List<Order>> expandableListDetail) {
+                           HashMap<String, List<OrderClass>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -50,7 +44,7 @@ public class MyOrderAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        final Order ord = (Order) getChild(listPosition, expandedListPosition);
+        final OrderClass ord = (OrderClass) getChild(listPosition, expandedListPosition);
 
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context

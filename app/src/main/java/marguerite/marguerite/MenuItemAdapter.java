@@ -6,7 +6,6 @@ import java.util.List;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -17,15 +16,15 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<MenuItem>> expandableListDetail;
-    private List<MenuItem> m_test=new ArrayList<>();
+    private HashMap<String, List<MenuItemClass>> expandableListDetail;
+    private List<MenuItemClass> m_test=new ArrayList<>();
 
 
 
     private int count=0;
     private String temp;
     public MenuItemAdapter(Context context, List<String> expandableListTitle,
-                           HashMap<String, List<MenuItem>> expandableListDetail) {
+                           HashMap<String, List<MenuItemClass>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -49,7 +48,7 @@ public class MenuItemAdapter extends BaseExpandableListAdapter {
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final MenuItem expandedListText = (MenuItem) getChild(listPosition, expandedListPosition);
+        final MenuItemClass expandedListText = (MenuItemClass) getChild(listPosition, expandedListPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

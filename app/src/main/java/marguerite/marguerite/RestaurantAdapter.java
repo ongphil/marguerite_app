@@ -21,13 +21,13 @@ import java.util.Calendar;
 
 
 
-public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+public class RestaurantAdapter extends ArrayAdapter<RestaurantClass> {
 
     private final Context context;
-    private List<Restaurant> res=new ArrayList<>();
+    private List<RestaurantClass> res=new ArrayList<>();
 
 
-    public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurant ) {
+    public RestaurantAdapter(Context context, ArrayList<RestaurantClass> restaurant ) {
         super(context,0, restaurant);
         // TODO Auto-generated constructor stub
 
@@ -45,7 +45,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         if(rowView == null)
             rowView = LayoutInflater.from(context).inflate(R.layout.background_suggestion_restaurant,parent,false);
 
-        Restaurant restaurant=res.get(position);
+        RestaurantClass restaurant=res.get(position);
 
         TextView titleText = (TextView) rowView.findViewById(R.id.title);
 

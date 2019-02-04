@@ -5,7 +5,7 @@ import com.google.firebase.firestore.DocumentReference;
 
 import java.util.Map;
 
-public class Order {
+public class OrderClass {
 
     //Attributs
     private String m_commentaire;
@@ -17,8 +17,8 @@ public class Order {
     private DocumentReference m_user_id;
 
     //Constructeur
-    public Order(String commentaire, String statut, int creneau_attente,double prix_total,
-                 DocumentReference restaurant_id, DocumentReference user_id,Map<String,Object> date)
+    public OrderClass(String commentaire, String statut, int creneau_attente, double prix_total,
+                      DocumentReference restaurant_id, DocumentReference user_id, Map<String,Object> date)
     {
         m_commentaire=commentaire;
         m_statut=statut;

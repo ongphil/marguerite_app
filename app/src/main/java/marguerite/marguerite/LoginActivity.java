@@ -63,6 +63,7 @@ public class LoginActivity extends Activity {
                                 Toast.makeText(LoginActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
+
                     });
                     /*Intent sendToMain = new Intent (LoginActivity.this, MainActivity.class);
                     startActivity(sendToMain);

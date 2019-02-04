@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -52,7 +51,7 @@ public class MyOrderFragment extends Fragment {
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
     private List<String> expandableListTitle;
-    private HashMap<String, List<Order>> expandableListDetail;
+    private HashMap<String, List<OrderClass>> expandableListDetail;
 
     public MyOrderFragment() {
         // Required empty public constructor
@@ -97,14 +96,14 @@ public class MyOrderFragment extends Fragment {
         FirebaseFirestore firestore;
         firestore=FirebaseFirestore.getInstance();
 
-        final HashMap<String, List<Order>> expandableListDetail = new HashMap<String, List<Order>>();
+        final HashMap<String, List<OrderClass>> expandableListDetail = new HashMap<String, List<OrderClass>>();
 
 
-        final ArrayList<Order> orders = new ArrayList<>();
+        final ArrayList<OrderClass> orders = new ArrayList<>();
 
-        final List<Order> prete = new ArrayList<>();
-        final List<Order> en_prepa = new ArrayList<>();
-        final List<Order> terminee = new ArrayList<>();
+        final List<OrderClass> prete = new ArrayList<>();
+        final List<OrderClass> en_prepa = new ArrayList<>();
+        final List<OrderClass> terminee = new ArrayList<>();
 
         firestore.collection("Commandes").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -129,18 +128,18 @@ public class MyOrderFragment extends Fragment {
                                switch(statut)
                                {
                                    case "Prete":
-                                       prete.add(new Order((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
+                                       prete.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
                                                cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
                                                (document.getDocumentReference("utilisateur_id")),date));
                                        break;
 
                                    case "En preparation":
-                                       en_prepa.add(new Order((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
+                                       en_prepa.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
                                                cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
                                                (document.getDocumentReference("utilisateur_id")),date));
                                        break;
                                    case"Terminee":
-                                       terminee.add(new Order((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
+                                       terminee.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
                                                cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
                                                (document.getDocumentReference("utilisateur_id")),date));
                                        break;
