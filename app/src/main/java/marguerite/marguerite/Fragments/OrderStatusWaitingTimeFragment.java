@@ -1,24 +1,25 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import marguerite.marguerite.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RootHomeFragment.OnFragmentInteractionListener} interface
+ * {@link OrderStatusWaitingTimeFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link RootHomeFragment#newInstance} factory method to
+ * Use the {@link OrderStatusWaitingTimeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RootHomeFragment extends Fragment {
+public class OrderStatusWaitingTimeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +31,7 @@ public class RootHomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public RootHomeFragment() {
+    public OrderStatusWaitingTimeFragment() {
         // Required empty public constructor
     }
 
@@ -40,11 +41,11 @@ public class RootHomeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment RootHomeFragment.
+     * @return A new instance of fragment OrderStatusWaitingTimeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RootHomeFragment newInstance(String param1, String param2) {
-        RootHomeFragment fragment = new RootHomeFragment();
+    public static OrderStatusWaitingTimeFragment newInstance(String param1, String param2) {
+        OrderStatusWaitingTimeFragment fragment = new OrderStatusWaitingTimeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,19 +66,7 @@ public class RootHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_root_home, container, false);
-        HomeFragment homeFragment = new HomeFragment();
-
-        FragmentTransaction transaction = getFragmentManager()
-                .beginTransaction();
-        /*
-         * When this container fragment is created, we fill it with our first
-         * "real" fragment
-         */
-        transaction.add(R.id.root_home_fragment, homeFragment);
-
-        transaction.commit();
-        return view;
+        return inflater.inflate(R.layout.fragment_order_status_waiting_time, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

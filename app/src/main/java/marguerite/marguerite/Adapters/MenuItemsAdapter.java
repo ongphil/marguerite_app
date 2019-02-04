@@ -1,27 +1,33 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Adapters;
 
-
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.List;
+import marguerite.marguerite.Classes.MenuItemClass;
+import marguerite.marguerite.R;
 
-public class MyOrderAdapter extends BaseExpandableListAdapter {
+public class MenuItemsAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
-    private HashMap<String, List<OrderClass>> expandableListDetail;
+    private HashMap<String, List<MenuItemClass>> expandableListDetail;
+    private List<MenuItemClass> m_test=new ArrayList<>();
 
 
-    public MyOrderAdapter(Context context, List<String> expandableListTitle,
-                           HashMap<String, List<OrderClass>> expandableListDetail) {
+
+    private int count=0;
+    private String temp;
+    public MenuItemsAdapter(Context context, List<String> expandableListTitle,
+                            HashMap<String, List<MenuItemClass>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -44,44 +50,53 @@ public class MyOrderAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        final OrderClass ord = (OrderClass) getChild(listPosition, expandedListPosition);
 
+        final MenuItemClass expandedListText = (MenuItemClass) getChild(listPosition, expandedListPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.background_my_orders, null);
+            convertView = layoutInflater.inflate(R.layout.background_increase_decrease_product, null);
         }
-
-        TextView date=(TextView)convertView.findViewById(R.id.date);
-        TextView status=(TextView)convertView.findViewById(R.id.status);
-        TextView price=(TextView)convertView.findViewById(R.id.price);
-
-
-        //Cast
-        double cast_prix_toal=ord.getPrixTotal();
-        String prix_total=String.valueOf(cast_prix_toal);
-
-        //Modifications des textviews
-        status.setText(ord.getStatut());
-        price.setText(prix_total+"€");
+        final TextView expandedListTextView = (TextView) convertView
+                .findViewById(R.id.expandedListItem);
+        expandedListTextView.setText(expandedListText.getNom());
 
 
 
-        String status_order = ord.getStatut().toString();
-        switch (status_order)
-        {
-            case "Prete":
-                date.setText(ord.getDate().get("ordered").toString());
-                break;
-            case "En preparation":
-                date.setText(ord.getDate().get("ordered").toString());
-                break;
-            case "Terminee":
-                date.setText(ord.getDate().get("delivered").toString());
-                break;
-            default:
-                break;
-        }
+
+        final TextView text=(TextView) convertView.findViewById(R.id.text);
+        Button plus=(Button) convertView.findViewById(R.id.buttonPlus);
+        Button minus=(Button)convertView.findViewById(R.id.buttonMinus);
+        final TextView quantity= (TextView)convertView.findViewById(R.id.quantity);
+
+        plus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                count=expandedListText.getQuantite();
+                count+=1;
+                temp=String.valueOf(count);
+                expandedListText.setQuantite(count);
+                quantity.setText(temp);
+                int i=0;
+            }
+        });
+
+
+
+
+
+        minus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                count=expandedListText.getQuantite();
+                count-=1;
+                temp=String.valueOf(count);
+                expandedListText.setQuantite(count);
+                quantity.setText(temp);
+                int i=0;
+
+            }
+        });
+
+
 
         return convertView;
     }

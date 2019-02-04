@@ -1,6 +1,4 @@
-package marguerite.marguerite;
-
-import android.app.Activity;
+package marguerite.marguerite.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,25 +7,22 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Calendar;
 
+import marguerite.marguerite.Classes.RestaurantClass;
+import marguerite.marguerite.R;
 
 
-
-
-public class RestaurantAdapter extends ArrayAdapter<RestaurantClass> {
+public class RestaurantsAdapter extends ArrayAdapter<RestaurantClass> {
 
     private final Context context;
     private List<RestaurantClass> res=new ArrayList<>();
 
 
-    public RestaurantAdapter(Context context, ArrayList<RestaurantClass> restaurant ) {
+    public RestaurantsAdapter(Context context, ArrayList<RestaurantClass> restaurant ) {
         super(context,0, restaurant);
         // TODO Auto-generated constructor stub
 

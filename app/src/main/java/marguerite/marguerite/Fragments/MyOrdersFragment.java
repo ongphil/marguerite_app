@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -23,18 +23,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import marguerite.marguerite.Adapters.MyOrdersAdapter;
+import marguerite.marguerite.Classes.OrderClass;
+import marguerite.marguerite.R;
+
 import static android.content.ContentValues.TAG;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MyOrderFragment.OnFragmentInteractionListener} interface
+ * {@link MyOrdersFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MyOrderFragment#newInstance} factory method to
+ * Use the {@link MyOrdersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyOrderFragment extends Fragment {
+public class MyOrdersFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,7 +57,7 @@ public class MyOrderFragment extends Fragment {
     private List<String> expandableListTitle;
     private HashMap<String, List<OrderClass>> expandableListDetail;
 
-    public MyOrderFragment() {
+    public MyOrdersFragment() {
         // Required empty public constructor
     }
 
@@ -66,8 +70,8 @@ public class MyOrderFragment extends Fragment {
      * @return A new instance of fragment HomeFragment2.
      */
     // TODO: Rename and change types and number of parameters
-    public static MyOrderFragment newInstance(String param1, String param2) {
-        MyOrderFragment fragment = new MyOrderFragment();
+    public static MyOrdersFragment newInstance(String param1, String param2) {
+        MyOrdersFragment fragment = new MyOrdersFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -89,7 +93,7 @@ public class MyOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view=inflater.inflate(R.layout.fragment_my_order, container, false);
+        View view=inflater.inflate(R.layout.fragment_my_orders, container, false);
 
         expandableListView = (ExpandableListView)view.findViewById(R.id.expandable_status);
 
@@ -138,7 +142,7 @@ public class MyOrderFragment extends Fragment {
                                                cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
                                                (document.getDocumentReference("utilisateur_id")),date));
                                        break;
-                                   case"Terminee":
+                                   case "Terminee":
                                        terminee.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
                                                cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
                                                (document.getDocumentReference("utilisateur_id")),date));
@@ -149,16 +153,17 @@ public class MyOrderFragment extends Fragment {
                                }
 
                                //Ajout dans l'expandableListView
-                                expandableListDetail.put("Prete", prete);
-                                expandableListDetail.put("En preparation", en_prepa);
-                                expandableListDetail.put("Terminee", terminee);
+                                expandableListDetail.put("En préparation", en_prepa);
+                                expandableListDetail.put("Prêtes", prete);
+                                expandableListDetail.put("Terminées", terminee);
 
 
                             }
 
                             //Adapteur dans le layout
                             expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-                            expandableListAdapter = new MyOrderAdapter(getActivity(), expandableListTitle, expandableListDetail);
+                            java.util.Collections.sort(expandableListTitle);
+                            expandableListAdapter = new MyOrdersAdapter(getActivity(), expandableListTitle, expandableListDetail);
                             expandableListView.setAdapter(expandableListAdapter);
 
 

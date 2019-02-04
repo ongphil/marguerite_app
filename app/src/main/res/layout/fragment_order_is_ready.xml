@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="15dp"
     android:paddingBottom="125dp"
-    tools:context=".OrderIsReadyFragment">
+    tools:context=".Fragments.OrderIsReadyFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

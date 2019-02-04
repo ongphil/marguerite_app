@@ -4,7 +4,7 @@
     android:id="@+id/root_login_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RootLoginActivty">
+    tools:context=".Activities.RootLoginActivty">
 
     <!-- TODO: Update blank fragment layout -->
 

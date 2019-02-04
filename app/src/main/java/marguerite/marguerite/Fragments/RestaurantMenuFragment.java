@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -22,18 +22,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import marguerite.marguerite.Adapters.MenuItemsAdapter;
+import marguerite.marguerite.Classes.MenuItemClass;
+import marguerite.marguerite.R;
+
 import static android.content.ContentValues.TAG;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ToOrderFragment.OnFragmentInteractionListener} interface
+ * {@link RestaurantMenuFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ToOrderFragment#newInstance} factory method to
+ * Use the {@link RestaurantMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ToOrderFragment extends Fragment {
+public class RestaurantMenuFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -52,7 +56,7 @@ public class ToOrderFragment extends Fragment {
     private List<String> expandableListTitle;
     private HashMap<String, List<MenuItemClass>> expandableListDetail;
 
-    public ToOrderFragment() {
+    public RestaurantMenuFragment() {
         // Required empty public constructor
     }
 
@@ -65,8 +69,8 @@ public class ToOrderFragment extends Fragment {
      * @return A new instance of fragment HomeFragment2.
      */
     // TODO: Rename and change types and number of parameters
-    public static ToOrderFragment newInstance(String param1, String param2) {
-        ToOrderFragment fragment = new ToOrderFragment();
+    public static RestaurantMenuFragment newInstance(String param1, String param2) {
+        RestaurantMenuFragment fragment = new RestaurantMenuFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -88,7 +92,7 @@ public class ToOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view=inflater.inflate(R.layout.fragment_to_order, container, false);
+        View view=inflater.inflate(R.layout.fragment_restaurant_menu, container, false);
 
         expandableListView = (ExpandableListView)view.findViewById(R.id.expandableListView);
 
@@ -157,7 +161,7 @@ public class ToOrderFragment extends Fragment {
 
 
                             expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-                            expandableListAdapter = new MenuItemAdapter(getActivity(), expandableListTitle, expandableListDetail);
+                            expandableListAdapter = new MenuItemsAdapter(getActivity(), expandableListTitle, expandableListDetail);
                             expandableListView.setAdapter(expandableListAdapter);
                             int i=0;
 

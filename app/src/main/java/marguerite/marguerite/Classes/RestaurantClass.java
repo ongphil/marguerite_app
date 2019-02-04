@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Classes;
 
 import java.util.HashMap;
 import java.util.Map;
