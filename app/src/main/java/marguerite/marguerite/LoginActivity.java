@@ -35,7 +35,7 @@ public class LoginActivity extends Activity {
 
         et_login_email = (EditText)findViewById(R.id.et_login_email);
         et_login_password = (EditText)findViewById(R.id.et_login_password);
-        buttonConnection = (Button)findViewById(R.id.btn_login_connexion_email);
+        buttonConnection = (Button)findViewById(R.id.button_connexion);
 
         Auth= FirebaseAuth.getInstance();
 

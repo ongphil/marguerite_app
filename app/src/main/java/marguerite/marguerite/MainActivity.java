@@ -1,5 +1,6 @@
 package marguerite.marguerite;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -22,6 +26,9 @@ public class MainActivity extends AppCompatActivity
 
 
     private FirebaseFirestore Firestore;
+    private FirebaseAuth Auth;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +50,38 @@ public class MainActivity extends AppCompatActivity
                     case 0:
                         return new RootHomeFragment();
                     case 1:
-                        return new RootOrdersFragment();
-                    case 2:
-                        return new ProfileFragment();
-                }
-                return null;
-            }
-
-            @Override
-            public int getCount() {
-                return 3;
-            }
+                        return new RootOrdersFragment();                 
+                    case 2:                                              
+                        return new ProfileFragment();                    
+                }                                                        
+                return null;                                              
+            }                                                             
+                                                                          
+            @Override                                                     
+            public int getCount() {                                       
+                return 3;                                                 
+            }                                                             
         });
 
+
+        Firestore = FirebaseFirestore.getInstance();
+        Auth= FirebaseAuth.getInstance();
+
+        Firestore.collection("Utilisateurs").document(Auth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                sharedPreferences = getBaseContext().getSharedPreferences("marguerite", MODE_PRIVATE);
+                sharedPreferences.edit().putString("nom_utilisateur", (documentSnapshot.get("nom")).toString()).apply();
+                sharedPreferences.edit().putString("prenom_utilisateur",(documentSnapshot.get("prenom")).toString()).apply();
+                sharedPreferences.edit().putString("sexe_utilisateur",(documentSnapshot.get("sexe")).toString()).apply();
+                sharedPreferences.edit().putString("mail_utilisateur",(documentSnapshot.get("mail")).toString()).apply();
+                sharedPreferences.edit().putString("password_utilisateur",(documentSnapshot.get("password")).toString()).apply();
+
+                String name = sharedPreferences.getString("nom_utilisateur", null);
+                
+            }
+        });
 
 
     }

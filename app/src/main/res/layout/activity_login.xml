@@ -11,39 +11,86 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher_round" />
+
         <TextView
             android:id="@+id/textView12"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Connectez-vous à votre espace" />
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Connectez-vous à votre espace"
+            android:textColor="@color/color_connexion"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/et_login_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:background="@color/Color_editText"
+            android:drawableLeft="@drawable/icon_user"
             android:ems="10"
-            android:hint="Email"
+            android:hint="  Email"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/et_login_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:background="@color/Color_editText"
+            android:drawableLeft="@drawable/icon_password"
             android:ems="10"
-            android:hint="Mot de passe"
+            android:hint=" Mot de passe"
             android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mot de passe oublié ?" />
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.5"
+            android:text="Mot de passe oublié ?"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/button_connexion"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="CONNEXION"
+            android:textColor="@color/Color_continue"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
 
             <View
                 android:id="@+id/divider"
@@ -58,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:text="OU" />
+                android:text="Ou" />
 
             <View
                 android:id="@+id/divider2"
@@ -66,31 +113,60 @@
                 android:layout_height="1dp"
                 android:layout_weight="2"
                 android:background="@color/color_mes_cartes" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Créez votre compte" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Créez votre compte"
+            android:textColor="@color/color_connexion"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical|center_horizontal"
             android:text="Vous n'avez pas encore de compte ?" />
 
         <Button
             android:id="@+id/btn_login_connexion_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SIGN UP WITH EMAIL" />
+            android:layout_height="0dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="SIGN UP WITH EMAIL"
+            android:textColor="@color/Color_continue"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SIGN UP WITH FACEBOOK" />
+            android:layout_height="0dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="SIGN UP WITH FACEBOOK"
+            android:textColor="@color/Color_continue"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
