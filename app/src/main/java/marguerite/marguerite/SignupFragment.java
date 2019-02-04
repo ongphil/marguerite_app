@@ -148,78 +148,16 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
 
 
 
-                // set the custom dialog components - text, image and button
+
 
                 dialog.show();
             }
         });
-       /* continuer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDialog();
-            }
-        });*/
+
         return view;
     }
 
-    public void openDialog() {
 
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-
-/*
-        LinearLayout layout=new LinearLayout(getActivity());
-
-
-        // Set Custom Title
-        TextView title = new TextView(getActivity());
-
-        // Title Properties
-        title.setText("Bonjour Morgan");
-        title.setPadding(10, 10, 10, 10);   // Set Position
-        title.setGravity(Gravity.CENTER);
-        title.setTextColor(Color.BLACK);
-        title.setTextSize(20);
-        alertDialog.setCustomTitle(title);
-
-        // Set Message
-        TextView msg = new TextView(getActivity());
-        // Message Properties
-        msg.setText("Veux-tu ajouter un moyen de paiement maintenant ? ");
-        msg.setGravity(Gravity.CENTER_HORIZONTAL);
-        msg.setTextColor(Color.BLACK);
-        alertDialog.setView(msg);
-
-        // Set Button
-        // you can more buttons
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Ajouter", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Perform Action on Button
-            }
-        });
-
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"Plus tard", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Perform Action on Button
-            }
-        });
-
-        new Dialog(getActivity());
-        alertDialog.show();
-
-
-        final Button ajouter = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) ajouter.getLayoutParams();
-        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        ajouter.setPadding(50, 10, 10, 10);   // Set Position
-        ajouter.setTextColor(Color.BLUE);
-        ajouter.setLayoutParams(neutralBtnLP);
-
-        final Button plus_tard = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-        LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) ajouter.getLayoutParams();
-        negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        plus_tard.setTextColor(Color.RED);
-        plus_tard.setLayoutParams(negBtnLP);*/
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

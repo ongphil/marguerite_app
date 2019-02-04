@@ -39,7 +39,7 @@ public class MyCardFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Mycard.
+     * @return A new instance of fragment MyCardFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static MyCardFragment newInstance(String param1, String param2) {
@@ -64,8 +64,7 @@ public class MyCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_mycard, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_my_card, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
