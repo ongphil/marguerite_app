@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
                     case 1:
                         return new RootOrdersFragment();                 
                     case 2:                                              
-                        return new ProfileFragment();                    
+                        return new ProfileFragment();
                 }                                                        
                 return null;                                              
             }                                                             

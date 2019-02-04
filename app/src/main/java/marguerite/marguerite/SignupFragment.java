@@ -3,16 +3,13 @@ package marguerite.marguerite;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.telephony.mbms.StreamingServiceInfo;
-import android.view.Gravity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +19,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -61,6 +56,7 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
     private  RadioButton button_mme;
 
     private Button continuer;
+    private Button ajouter;
 
 
     private OnFragmentInteractionListener mListener;
@@ -153,12 +149,30 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
                 dialog.show();
             }
         });
-       /* continuer.setOnClickListener(new View.OnClickListener() {
+        ajouter=(Button)view.findViewById(R.id.button_add_card);
+        ajouter.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                openDialog();
+            public void onClick(View arg0) {
+
+                FragmentTransaction trans = getFragmentManager()
+                        .beginTransaction();
+                /*
+                 * IMPORTANT: We use the "root frame" defined in
+                 * "root_fragment.xml" as the reference to replace fragment
+                 */
+                trans.replace(R.id.root_home_fragment, new ToOrderFragment());
+
+                /*
+                 * IMPORTANT: The following lines allow us to add the fragment
+                 * to the stack and return to it later, by pressing back
+                 */
+                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                trans.addToBackStack(null);
+
+                trans.commit();
             }
-        });*/
+        });
         return view;
     }
 

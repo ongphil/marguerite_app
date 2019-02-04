@@ -1,13 +1,20 @@
 package marguerite.marguerite;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +29,7 @@ public class LoginActivity extends Activity {
     EditText et_login_email;
     EditText et_login_password;
     Button buttonConnection;
+    Button button_signup_mail;
 
     String email;
     String password;
@@ -36,6 +44,9 @@ public class LoginActivity extends Activity {
         et_login_email = (EditText)findViewById(R.id.et_login_email);
         et_login_password = (EditText)findViewById(R.id.et_login_password);
         buttonConnection = (Button)findViewById(R.id.button_connexion);
+        button_signup_mail =(Button) findViewById(R.id.button_inscription_mail);
+
+
 
         Auth= FirebaseAuth.getInstance();
 
@@ -69,6 +80,18 @@ public class LoginActivity extends Activity {
                     startActivity(sendToMain);
                     finish();*/
                 }
+            }
+        });
+
+        button_signup_mail.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent sendToSignUpActivity = new Intent(LoginActivity.this,SignUpActivity.class);
+                LoginActivity.this.startActivity(sendToSignUpActivity);
+                finish();
+                int k=0;
             }
         });
     }
