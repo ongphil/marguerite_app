@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.telephony.mbms.StreamingServiceInfo;
 import android.view.Gravity;
@@ -28,6 +29,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
 
 /**
@@ -61,6 +64,7 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
     private  RadioButton button_mme;
 
     private Button continuer;
+    private Button ajouter;
 
 
     private OnFragmentInteractionListener mListener;
@@ -131,6 +135,7 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
         });
 
         continuer = (Button)view.findViewById(R.id.button_continuer);
+        ajouter = (Button)view.findViewById(R.id.button_add_card);
 
         continuer.setOnClickListener(new View.OnClickListener() {
 
@@ -146,13 +151,37 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
 
 
 
-
-
-
-
                 dialog.show();
+
+
+
             }
         });
+
+
+        ajouter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction trans = getFragmentManager()
+                        .beginTransaction();
+                /*
+                 * IMPORTANT: We use the "root frame" defined in
+                 * "root_fragment.xml" as the reference to replace fragment
+                 */
+                trans.replace(R.id.root_sign_up_fragment, new MyCardFragment());
+
+                /*
+                 * IMPORTANT: The following lines allow us to add the fragment
+                 * to the stack and return to it later, by pressing back
+                 */
+                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                trans.addToBackStack(null);
+
+                trans.commit();
+            }
+        });
+
 
         return view;
     }

@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseFirestore Firestore;
     private FirebaseAuth Auth;
 
+
     SharedPreferences sharedPreferences;
 
     @Override
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity
                     case 1:
                         return new RootOrdersFragment();                 
                     case 2:                                              
-                        return new ProfileFragment();                    
+                        return new SignupFragment();
+
                 }                                                        
                 return null;                                              
             }                                                             
