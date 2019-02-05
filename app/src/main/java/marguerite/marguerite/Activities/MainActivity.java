@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Activities;
 
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -16,10 +16,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import marguerite.marguerite.Fragments.HomeFragment;
+import marguerite.marguerite.Fragments.MyOrdersFragment;
+import marguerite.marguerite.Fragments.ProfileFragment;
+import marguerite.marguerite.Fragments.RootHomeFragment;
+import marguerite.marguerite.Fragments.RootOrdersFragment;
+import marguerite.marguerite.Fragments.RestaurantMenuFragment;
+import marguerite.marguerite.R;
+
 
 public class MainActivity extends AppCompatActivity
-        implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,RootHomeFragment.OnFragmentInteractionListener, RootOrdersFragment.OnFragmentInteractionListener, MyOrderFragment.OnFragmentInteractionListener,
-        OrdersFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener,ToOrderFragment.OnFragmentInteractionListener, SignupFragment.OnFragmentInteractionListener{
+        implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,RootHomeFragment.OnFragmentInteractionListener, RootOrdersFragment.OnFragmentInteractionListener, MyOrdersFragment.OnFragmentInteractionListener,
+        ProfileFragment.OnFragmentInteractionListener,RestaurantMenuFragment.OnFragmentInteractionListener{
 
     private ViewPager viewPager;
     private BottomNavigationView navigation;
@@ -52,8 +60,8 @@ public class MainActivity extends AppCompatActivity
                         return new RootHomeFragment();
                     case 1:
                         return new RootOrdersFragment();                 
-                    case 2:                                              
-                        return new SignupFragment();
+                    case 2:
+                        return new ProfileFragment();
 
                 }                                                        
                 return null;                                              
@@ -116,10 +124,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public void onFragmentInteractionOrders(Uri uri) {
-
-    }
 
     @Override
     public void onFragmentInteractionProfile(Uri uri) {
@@ -152,8 +156,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-            @Override
-            public void onFragmentInteraction(Uri uri) {
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
-            }
-        }
+    }
+
+
+    }

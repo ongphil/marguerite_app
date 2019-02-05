@@ -2,18 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
+    android:layout_height="match_parent"
+    tools:context=".Activities.SignUpActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="30dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="30dp">
+        android:orientation="vertical">
 
         <RadioGroup
             android:id="@+id/radio_button_gender"
@@ -67,7 +63,7 @@
             android:id="@+id/linear_layout_birth"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
@@ -96,7 +92,7 @@
             android:id="@+id/linear_layout_phone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Spinner
@@ -144,42 +140,12 @@
             android:inputType="textPassword"
             android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:text=" Modifier mon mot de passe ?" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_deconnect"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Déconnexion"
-                android:textColor="@color/color_mes_cartes" />
-
-            <Button
-                android:id="@+id/button_delete_account"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Supprimer "
-                android:textColor="@color/color_mes_cartes" />
-        </LinearLayout>
-
         <CheckBox
             android:id="@+id/checkBox_terms_of_use"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="10dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:text="J'ai lu et j'accepte les conditions générale de vente"
             android:textColor="@color/color_text_terms_of_use"
             android:textStyle="italic"
@@ -191,12 +157,13 @@
             android:layout_height="0dp"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:background="@drawable/button"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:text="Enregistrer"
+            android:text="Continuer"
             android:textColor="@color/Color_continue" />
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

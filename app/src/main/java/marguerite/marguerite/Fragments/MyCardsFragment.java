@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import marguerite.marguerite.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PaymentAcceptedFragment.OnFragmentInteractionListener} interface
+ * {@link MyCardsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PaymentAcceptedFragment#newInstance} factory method to
+ * Use the {@link MyCardsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PaymentAcceptedFragment extends Fragment {
+public class MyCardsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class PaymentAcceptedFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public PaymentAcceptedFragment() {
+    public MyCardsFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +41,11 @@ public class PaymentAcceptedFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PaymentAccepted.
+     * @return A new instance of fragment MyCardFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PaymentAcceptedFragment newInstance(String param1, String param2) {
-        PaymentAcceptedFragment fragment = new PaymentAcceptedFragment();
+    public static MyCardsFragment newInstance(String param1, String param2) {
+        MyCardsFragment fragment = new MyCardsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,8 +66,10 @@ public class PaymentAcceptedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_payment_accepted, container, false);
+
+        View view=inflater.inflate(R.layout.fragment_mycards, container, false);
         return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

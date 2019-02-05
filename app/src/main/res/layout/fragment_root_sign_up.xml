@@ -4,8 +4,8 @@
     android:id="@+id/root_sign_up_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RootSignUpFragment">
+    tools:context=".Fragments.RootSignUpFragment">
 
-
+    <!-- TODO: Update blank fragment layout -->
 
 </FrameLayout>

@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Classes;
 
 public  class MenuItemClass extends Object{
 

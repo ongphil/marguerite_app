@@ -1,43 +1,37 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import marguerite.marguerite.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MeansOfPaymentFragment.OnFragmentInteractionListener} interface
+ * {@link RootSignUpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MeansOfPaymentFragment#newInstance} factory method to
+ * Use the {@link RootSignUpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-
-public class MeansOfPaymentFragment extends Fragment {
+public class RootSignUpFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    private EditText editText_cc_number;
-   // private TextWatcher textWatcher= new TextWatcher();
     private OnFragmentInteractionListener mListener;
 
-    public MeansOfPaymentFragment() {
+    public RootSignUpFragment() {
         // Required empty public constructor
     }
 
@@ -47,11 +41,11 @@ public class MeansOfPaymentFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MeansOfPaymentFragment.
+     * @return A new instance of fragment RootSignUpFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MeansOfPaymentFragment newInstance(String param1, String param2) {
-        MeansOfPaymentFragment fragment = new MeansOfPaymentFragment();
+    public static RootSignUpFragment newInstance(String param1, String param2) {
+        RootSignUpFragment fragment = new RootSignUpFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,42 +66,18 @@ public class MeansOfPaymentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_means_of_payment, container, false);
-        editText_cc_number=(EditText)view.findViewById(R.id.editText_cc_number);
-        editText_cc_number.addTextChangedListener(new TextWatcher() {
+        View view = inflater.inflate(R.layout.fragment_root_orders, container, false);
+        SignUpFragment signUpFragment = new SignUpFragment();
 
-            // Change this to what you want... ' ', '-' etc..
-            private static final char space = ' ';
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        FragmentTransaction transaction = getFragmentManager()
+                .beginTransaction();
+        /*
+         * When this container fragment is created, we fill it with our first
+         * "real" fragment
+         */
+        transaction.add(R.id.root_orders_fragment, signUpFragment);
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // Remove spacing char
-                if (s.length() > 0 && (s.length() % 5) == 0) {
-                    final char c = s.charAt(s.length() - 1);
-                    if (space == c) {
-                        s.delete(s.length() - 1, s.length());
-                    }
-                }
-                // Insert char where needed.
-                if (s.length() > 0 && (s.length() % 5) == 0) {
-                    char c = s.charAt(s.length() - 1);
-                    // Only if its a digit where there should be a space we insert a space
-                    if (Character.isDigit(c) && TextUtils.split(s.toString(), String.valueOf(space)).length <= 3) {
-                        s.insert(s.length() - 1, String.valueOf(space));
-                    }
-                }
-            }
-        });
-
+        transaction.commit();
         return view;
     }
 
@@ -149,8 +119,4 @@ public class MeansOfPaymentFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-    /**
-     * Formats the watched EditText to a credit card number
-     */
-
 }

@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -21,7 +21,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import marguerite.marguerite.Adapters.MenuItemsAdapter;
+import marguerite.marguerite.Classes.MenuItemClass;
+import marguerite.marguerite.R;
 
 import static android.content.ContentValues.TAG;
 
@@ -29,12 +32,12 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MyOrderFragment.OnFragmentInteractionListener} interface
+ * {@link RestaurantMenuFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MyOrderFragment#newInstance} factory method to
+ * Use the {@link RestaurantMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyOrderFragment extends Fragment {
+public class RestaurantMenuFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -51,9 +54,9 @@ public class MyOrderFragment extends Fragment {
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
     private List<String> expandableListTitle;
-    private HashMap<String, List<OrderClass>> expandableListDetail;
+    private HashMap<String, List<MenuItemClass>> expandableListDetail;
 
-    public MyOrderFragment() {
+    public RestaurantMenuFragment() {
         // Required empty public constructor
     }
 
@@ -66,8 +69,8 @@ public class MyOrderFragment extends Fragment {
      * @return A new instance of fragment HomeFragment2.
      */
     // TODO: Rename and change types and number of parameters
-    public static MyOrderFragment newInstance(String param1, String param2) {
-        MyOrderFragment fragment = new MyOrderFragment();
+    public static RestaurantMenuFragment newInstance(String param1, String param2) {
+        RestaurantMenuFragment fragment = new RestaurantMenuFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -89,23 +92,25 @@ public class MyOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view=inflater.inflate(R.layout.fragment_my_order, container, false);
+        View view=inflater.inflate(R.layout.fragment_restaurant_menu, container, false);
 
-        expandableListView = (ExpandableListView)view.findViewById(R.id.expandable_status);
+        expandableListView = (ExpandableListView)view.findViewById(R.id.expandableListView);
 
         FirebaseFirestore firestore;
         firestore=FirebaseFirestore.getInstance();
 
-        final HashMap<String, List<OrderClass>> expandableListDetail = new HashMap<String, List<OrderClass>>();
+        final HashMap<String, List<MenuItemClass>> expandableListDetail = new HashMap<String, List<MenuItemClass>>();
 
 
-        final ArrayList<OrderClass> orders = new ArrayList<>();
+        final ArrayList<MenuItemClass> menu = new ArrayList<>();
 
-        final List<OrderClass> prete = new ArrayList<>();
-        final List<OrderClass> en_prepa = new ArrayList<>();
-        final List<OrderClass> terminee = new ArrayList<>();
+        final List<MenuItemClass> boisson = new ArrayList<MenuItemClass>();
+        final List<MenuItemClass> entree = new ArrayList<MenuItemClass>();
+        final List<MenuItemClass> plat = new ArrayList<MenuItemClass>();
+        final List<MenuItemClass> dessert = new ArrayList<MenuItemClass>();
 
-        firestore.collection("Commandes").get()
+
+        firestore.collection("Restaurants").document("8tWygSWs1VATB4O4fSLk").collection("Carte").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -113,54 +118,52 @@ public class MyOrderFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
 
-                               String statut=document.getData().get("statut").toString();
+                                String nom=document.getData().get("categorie").toString();
+                                Double prix_unitaire_cast;
+                                prix_unitaire_cast= Double.parseDouble(document.getData().get("prix_unitaire").toString());
+                                boolean temp =true;
+                                switch(nom)
+                                {
+                                    case "Entrée":
+                                        entree.add(new MenuItemClass((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                                (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
+                                                prix_unitaire_cast));
+                                        break;
 
-                               //Cast
-                               int cast_creneau;
-                               cast_creneau=Integer.parseInt(document.getData().get("creneau_attente").toString());
+                                    case "Boisson":
+                                        boisson.add(new MenuItemClass((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                                (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
+                                                prix_unitaire_cast));
+                                        break;
 
-                               double cast_prix_total;
-                               cast_prix_total=Double.parseDouble(document.getData().get("prix_total").toString());
+                                    case "Plat":
 
-                                Map<String,Object> date=(Map<String,Object>) document.getData().get("date");
+                                        plat.add(new MenuItemClass((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                                (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
+                                                prix_unitaire_cast));
+                                        break;
 
-                                //Ajout des commandes selon son statut; prête, en prépa ou terminée
-                               switch(statut)
-                               {
-                                   case "Prete":
-                                       prete.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
-                                               cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
-                                               (document.getDocumentReference("utilisateur_id")),date));
-                                       break;
+                                    case "Dessert":
+                                        dessert.add(new MenuItemClass((document.getData().get("nom")).toString(),(document.getData().get("categorie")).toString(),
+                                                (document.getData().get("description")).toString(),(document.getData().get("disponibilite")).toString(),
+                                                prix_unitaire_cast));
+                                        break;
+                                    default:
+                                        break;
 
-                                   case "En preparation":
-                                       en_prepa.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
-                                               cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
-                                               (document.getDocumentReference("utilisateur_id")),date));
-                                       break;
-                                   case"Terminee":
-                                       terminee.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
-                                               cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
-                                               (document.getDocumentReference("utilisateur_id")),date));
-                                       break;
-                                   default:
-                                       break;
-
-                               }
-
-                               //Ajout dans l'expandableListView
-                                expandableListDetail.put("Prete", prete);
-                                expandableListDetail.put("En preparation", en_prepa);
-                                expandableListDetail.put("Terminee", terminee);
-
+                                }
+                                expandableListDetail.put("BOISSONS", boisson);
+                                expandableListDetail.put("ENTREES", entree);
+                                expandableListDetail.put("PLATS", plat);
+                                expandableListDetail.put("DESSERTS", dessert);
 
                             }
 
-                            //Adapteur dans le layout
-                            expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-                            expandableListAdapter = new MyOrderAdapter(getActivity(), expandableListTitle, expandableListDetail);
-                            expandableListView.setAdapter(expandableListAdapter);
 
+                            expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+                            expandableListAdapter = new MenuItemsAdapter(getActivity(), expandableListTitle, expandableListDetail);
+                            expandableListView.setAdapter(expandableListAdapter);
+                            int i=0;
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
