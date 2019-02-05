@@ -1,20 +1,14 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Activities;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,6 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import marguerite.marguerite.Fragments.SignUpFragment;
+import marguerite.marguerite.R;
 
 public class LoginActivity extends Activity {
 
@@ -89,10 +86,17 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
 
                 Intent sendToSignUpActivity = new Intent(LoginActivity.this,SignUpActivity.class);
-                LoginActivity.this.startActivity(sendToSignUpActivity);
-                finish();
-                int k=0;
+                startActivity(sendToSignUpActivity);
+
+
+
+
+
+
             }
         });
+
+
+
     }
 }

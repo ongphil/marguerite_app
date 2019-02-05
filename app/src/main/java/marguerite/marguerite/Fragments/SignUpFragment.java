@@ -1,6 +1,5 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -13,27 +12,26 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import marguerite.marguerite.Activities.SignUpActivity;
+import marguerite.marguerite.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SignupFragment.OnFragmentInteractionListener} interface
+ * {@link SignUpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SignupFragment#newInstance} factory method to
+ * Use the {@link SignUpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SignupFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class SignUpFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -42,10 +40,11 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private OnFragmentInteractionListener mListener;
     Spinner spinner;
     ArrayAdapter<CharSequence> adapter;
     String telephone_index_selected;
-
 
     private EditText editText_first_name;
     private TextInputLayout input_first_name;
@@ -56,12 +55,8 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
     private  RadioButton button_mme;
 
     private Button continuer;
-    private Button ajouter;
 
-
-    private OnFragmentInteractionListener mListener;
-
-    public SignupFragment() {
+    public SignUpFragment() {
         // Required empty public constructor
     }
 
@@ -71,11 +66,11 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SignupFragment.
+     * @return A new instance of fragment SignUpFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SignupFragment newInstance(String param1, String param2) {
-        SignupFragment fragment = new SignupFragment();
+    public static SignUpFragment newInstance(String param1, String param2) {
+        SignUpFragment fragment = new SignUpFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -96,8 +91,7 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View view=inflater.inflate(R.layout.fragment_signup, container, false);
+        View view= inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         spinner =(Spinner)view.findViewById(R.id.Spiner_telephone_index);
         adapter = ArrayAdapter.createFromResource(getActivity(),R.array.telephone_index,android.R.layout.simple_spinner_item);
@@ -137,102 +131,36 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.background_add_card);
                 Window window=dialog.getWindow();
-                window.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
 
-
-
-                // set the custom dialog components - text, image and button
-
                 dialog.show();
-            }
-        });
-        ajouter=(Button)view.findViewById(R.id.button_add_card);
-        ajouter.setOnClickListener(new View.OnClickListener() {
+                dialog.findViewById(R.id.button_add_card).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                        FragmentTransaction trans = getFragmentManager()
+                                .beginTransaction();
+                        trans.replace(R.id.root_sign_up_fragment, new MeansOfPaymentFragment());
+                        trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                        trans.addToBackStack(null);
+                        trans.commit();
+                    }
+                });
 
-            @Override
-            public void onClick(View arg0) {
+                dialog.findViewById(R.id.button_cancel_card).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
 
-                FragmentTransaction trans = getFragmentManager()
-                        .beginTransaction();
-                /*
-                 * IMPORTANT: We use the "root frame" defined in
-                 * "root_fragment.xml" as the reference to replace fragment
-                 */
-                trans.replace(R.id.root_home_fragment, new ToOrderFragment());
 
-                /*
-                 * IMPORTANT: The following lines allow us to add the fragment
-                 * to the stack and return to it later, by pressing back
-                 */
-                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                trans.addToBackStack(null);
-
-                trans.commit();
             }
         });
         return view;
-    }
-
-    public void openDialog() {
-
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-
-/*
-        LinearLayout layout=new LinearLayout(getActivity());
-
-
-        // Set Custom Title
-        TextView title = new TextView(getActivity());
-
-        // Title Properties
-        title.setText("Bonjour Morgan");
-        title.setPadding(10, 10, 10, 10);   // Set Position
-        title.setGravity(Gravity.CENTER);
-        title.setTextColor(Color.BLACK);
-        title.setTextSize(20);
-        alertDialog.setCustomTitle(title);
-
-        // Set Message
-        TextView msg = new TextView(getActivity());
-        // Message Properties
-        msg.setText("Veux-tu ajouter un moyen de paiement maintenant ? ");
-        msg.setGravity(Gravity.CENTER_HORIZONTAL);
-        msg.setTextColor(Color.BLACK);
-        alertDialog.setView(msg);
-
-        // Set Button
-        // you can more buttons
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Ajouter", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Perform Action on Button
-            }
-        });
-
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"Plus tard", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Perform Action on Button
-            }
-        });
-
-        new Dialog(getActivity());
-        alertDialog.show();
-
-
-        final Button ajouter = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) ajouter.getLayoutParams();
-        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        ajouter.setPadding(50, 10, 10, 10);   // Set Position
-        ajouter.setTextColor(Color.BLUE);
-        ajouter.setLayoutParams(neutralBtnLP);
-
-        final Button plus_tard = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-        LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) ajouter.getLayoutParams();
-        negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        plus_tard.setTextColor(Color.RED);
-        plus_tard.setLayoutParams(negBtnLP);*/
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -259,18 +187,6 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
         mListener = null;
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        telephone_index_selected= parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), telephone_index_selected,Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -281,7 +197,7 @@ public class SignupFragment extends Fragment implements AdapterView.OnItemSelect
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    interface OnFragmentInteractionListener {
+    public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }

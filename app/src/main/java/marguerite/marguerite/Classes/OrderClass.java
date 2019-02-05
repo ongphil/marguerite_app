@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Classes;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;

@@ -1,23 +1,26 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import marguerite.marguerite.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MyCardFragment.OnFragmentInteractionListener} interface
+ * {@link RootHomeFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MyCardFragment#newInstance} factory method to
+ * Use the {@link RootHomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyCardFragment extends Fragment {
+public class RootHomeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +32,7 @@ public class MyCardFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public MyCardFragment() {
+    public RootHomeFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +42,11 @@ public class MyCardFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Mycard.
+     * @return A new instance of fragment RootHomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MyCardFragment newInstance(String param1, String param2) {
-        MyCardFragment fragment = new MyCardFragment();
+    public static RootHomeFragment newInstance(String param1, String param2) {
+        RootHomeFragment fragment = new RootHomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +67,18 @@ public class MyCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_mycard, container, false);
+        View view = inflater.inflate(R.layout.fragment_root_home, container, false);
+        HomeFragment homeFragment = new HomeFragment();
+
+        FragmentTransaction transaction = getFragmentManager()
+                .beginTransaction();
+        /*
+         * When this container fragment is created, we fill it with our first
+         * "real" fragment
+         */
+        transaction.add(R.id.root_home_fragment, homeFragment);
+
+        transaction.commit();
         return view;
     }
 

@@ -1,4 +1,4 @@
-package marguerite.marguerite;
+package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -22,6 +22,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Map;
 
+import marguerite.marguerite.Adapters.RestaurantsAdapter;
+import marguerite.marguerite.Classes.RestaurantClass;
+import marguerite.marguerite.R;
+
 import static android.content.ContentValues.TAG;
 
 
@@ -39,7 +43,7 @@ public class HomeFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     ListView list;
-    RestaurantAdapter restaurantAdapter;
+    RestaurantsAdapter restaurantsAdapter;
 
 
     String nom;
@@ -122,8 +126,8 @@ public class HomeFragment extends Fragment {
                         Map<String,Object> horaires=(Map<String,Object>) document.getData().get("horaires");
                         title.add(new RestaurantClass((document.getData().get("nom")).toString(),(document.getData().get("adresse")).toString(),horaires));
                         temp[0] =title.get(0).getNom().toString();
-                        restaurantAdapter=new RestaurantAdapter(getActivity(),title);
-                        list.setAdapter(restaurantAdapter);
+                        restaurantsAdapter =new RestaurantsAdapter(getActivity(),title);
+                        list.setAdapter(restaurantsAdapter);
 
                         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             public void onItemClick(AdapterView<?> parent, View view,
@@ -134,7 +138,7 @@ public class HomeFragment extends Fragment {
                                  * IMPORTANT: We use the "root frame" defined in
                                  * "root_fragment.xml" as the reference to replace fragment
                                  */
-                                trans.replace(R.id.root_home_fragment, new ToOrderFragment());
+                                trans.replace(R.id.root_home_fragment, new RestaurantMenuFragment());
 
                                 /*
                                  * IMPORTANT: The following lines allow us to add the fragment
