@@ -41,7 +41,7 @@
                 android:textColor="@color/Color_continue" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_cancel_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

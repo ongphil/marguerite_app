@@ -87,7 +87,6 @@ public class LoginActivity extends Activity {
 
                 Intent sendToSignUpActivity = new Intent(LoginActivity.this,SignUpActivity.class);
                 startActivity(sendToSignUpActivity);
-                finish();
 
 
 
