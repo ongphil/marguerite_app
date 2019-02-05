@@ -38,7 +38,7 @@ private SignUpFragment signUpFragment;
 
 
         android.support.v4.app.FragmentManager fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.root_sign_up_fragment,signUpFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.sign_up_activity,signUpFragment).commit();
 
 
     }
