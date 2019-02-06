@@ -24,6 +24,7 @@ private RootSignUpFragment rootSignUpFragment;
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_signup, rootSignUpFragment).commit();
 
 
+
     }
 
     @Override

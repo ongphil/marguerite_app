@@ -10,6 +10,7 @@ public class OrderClass {
     //Attributs
     private String m_commentaire;
     private  String m_statut;
+    private String m_numero_commande;
     private int m_creneau_attente;
     private double m_prix_total;
     private Map<String,Object> m_date;
@@ -18,10 +19,11 @@ public class OrderClass {
 
     //Constructeur
     public OrderClass(String commentaire, String statut, int creneau_attente, double prix_total,
-                      DocumentReference restaurant_id, DocumentReference user_id, Map<String,Object> date)
+                      DocumentReference restaurant_id, DocumentReference user_id, Map<String,Object> date,String numero_commande)
     {
         m_commentaire=commentaire;
         m_statut=statut;
+        m_numero_commande=numero_commande;
         m_creneau_attente=creneau_attente;
         m_prix_total=prix_total;
         m_restaurant_id=restaurant_id;
