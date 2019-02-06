@@ -64,22 +64,23 @@ public class MenuItemsAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.expandedListItem);
         expandedListTextView.setText(expandedListText.getNom());
 
-
-
+        String test = expandedListText.getNom();
+        String test2 = expandedListText.getQuantite().toString();
 
         final TextView product_name=(TextView) convertView.findViewById(R.id.expandedListItem);
-        Button plus=(Button) convertView.findViewById(R.id.buttonPlus);
-        Button minus=(Button)convertView.findViewById(R.id.buttonMinus);
+        final Button plus=(Button) convertView.findViewById(R.id.buttonPlus);
+        final Button minus=(Button)convertView.findViewById(R.id.buttonMinus);
         final TextView quantity= (TextView)convertView.findViewById(R.id.quantity);
+
+        quantity.setText(expandedListText.getQuantite().toString());
 
         plus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int k=0;
                 count=expandedListText.getQuantite();
                 count+=1;
                 temp=String.valueOf(count);
                 expandedListText.setQuantite(count);
-                quantity.setText(temp);
+                quantity.setText(expandedListText.getQuantite().toString());
 
                 /*for ( int i=0; i<mon_panier.size();i++)
                 {
@@ -115,8 +116,6 @@ public class MenuItemsAdapter extends BaseExpandableListAdapter {
                 temp=String.valueOf(count);
                 expandedListText.setQuantite(count);
                 quantity.setText(temp);
-
-                int i=0;
 
             }
         });
