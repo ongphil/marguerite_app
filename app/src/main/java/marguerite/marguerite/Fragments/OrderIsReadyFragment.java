@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import marguerite.marguerite.R;
 
@@ -30,6 +32,11 @@ public class OrderIsReadyFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private TextView status;
+    private TextView order_nb_or_estimation;
+    private ImageView hourglass;
+
+
 
     public OrderIsReadyFragment() {
         // Required empty public constructor
@@ -39,16 +46,24 @@ public class OrderIsReadyFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+
+     * @param groupPosition Parameter 1.
+     * @param creneau Parameter 2.
+     * @param num_commande Parameter 3.
+
+
      * @return A new instance of fragment OrderIsRreadyFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static OrderIsReadyFragment newInstance(String param1, String param2) {
+    public static OrderIsReadyFragment newInstance(Integer groupPosition,String creneau,String num_commande) {
+
         OrderIsReadyFragment fragment = new OrderIsReadyFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt("groupPosition",groupPosition);
+        args.putString("creneau",creneau);
+        args.putString("num_commande",num_commande);
+
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,7 +81,39 @@ public class OrderIsReadyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_is_ready, container, false);
+        View view= inflater.inflate(R.layout.fragment_order_is_ready, container, false);
+
+        status=(TextView)view.findViewById(R.id.text_status);
+        order_nb_or_estimation = (TextView)view.findViewById(R.id.order_nb_or_estimation);
+        hourglass = (ImageView)view.findViewById(R.id.hourglass);
+
+        Integer groupPosition = getArguments().getInt("groupPosition",0);
+        String temp_creneau = getArguments().getString("creneau",null);
+        String numero_commande = getArguments().getString("num_commande",null);
+
+        if(groupPosition==0)
+        {
+            status.setText("prête");
+            order_nb_or_estimation.setText("Numéro de commande : " + numero_commande);
+        }
+
+
+        if(groupPosition==1)
+        {
+            status.setText("en préparation");
+            order_nb_or_estimation.setText("Temps d'estimation : " + temp_creneau);
+            hourglass.setVisibility(View.VISIBLE);
+
+        }
+
+
+        if(groupPosition==2)
+        {
+            status.setText("terminée");
+            order_nb_or_estimation.setText("Numéro de commande : " + numero_commande);
+        }
+        
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

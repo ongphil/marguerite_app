@@ -66,7 +66,7 @@ public class RootSignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_root_orders, container, false);
+        View view = inflater.inflate(R.layout.fragment_root_sign_up, container, false);
         SignUpFragment signUpFragment = new SignUpFragment();
 
         FragmentTransaction transaction = getFragmentManager()
@@ -75,7 +75,7 @@ public class RootSignUpFragment extends Fragment {
          * When this container fragment is created, we fill it with our first
          * "real" fragment
          */
-        transaction.add(R.id.root_orders_fragment, signUpFragment);
+        transaction.add(R.id.root_sign_up_fragment, signUpFragment);
 
         transaction.commit();
         return view;
