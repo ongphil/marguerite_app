@@ -101,7 +101,7 @@ public class OrderIsReadyFragment extends Fragment {
         if(groupPosition==1)
         {
             status.setText("en préparation");
-            order_nb_or_estimation.setText("Temps d'estimation : " + temp_creneau);
+            order_nb_or_estimation.setText("Temps d'estimation : " + temp_creneau + " min");
             hourglass.setVisibility(View.VISIBLE);
 
         }
@@ -112,7 +112,7 @@ public class OrderIsReadyFragment extends Fragment {
             status.setText("terminée");
             order_nb_or_estimation.setText("Numéro de commande : " + numero_commande);
         }
-        
+
         return view;
     }
 
