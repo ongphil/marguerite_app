@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,6 +51,7 @@ public class MyOrdersFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     private OnFragmentInteractionListener mListener;
 
 
@@ -58,6 +60,12 @@ public class MyOrdersFragment extends Fragment {
     private ExpandableListAdapter expandableListAdapter;
     private List<String> expandableListTitle;
     private HashMap<String, List<OrderClass>> expandableListDetail;
+
+    private String cast_creneau_param;
+    private String numero_commande_param;
+
+
+
 
     public MyOrdersFragment() {
         // Required empty public constructor
@@ -69,7 +77,7 @@ public class MyOrdersFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment2.
+     * @return A new instance of fragment MyCardFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static MyOrdersFragment newInstance(String param1, String param2) {
@@ -80,6 +88,8 @@ public class MyOrdersFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    // TODO: Rename and change types and number of parameters
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -136,18 +146,18 @@ public class MyOrdersFragment extends Fragment {
                                    case "Prete":
                                        prete.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
                                                cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
-                                               (document.getDocumentReference("utilisateur_id")),date));
+                                               (document.getDocumentReference("utilisateur_id")),date,(document.getData().get("numéro_commande")).toString()));
                                        break;
 
                                    case "En preparation":
                                        en_prepa.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
                                                cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
-                                               (document.getDocumentReference("utilisateur_id")),date));
+                                               (document.getDocumentReference("utilisateur_id")),date,(document.getData().get("numéro_commande")).toString()));
                                        break;
                                    case "Terminee":
                                        terminee.add(new OrderClass((document.getData().get("commentaire")).toString(),(document.getData().get("statut")).toString(),
                                                cast_creneau,cast_prix_total,(document.getDocumentReference("restaurant_id")),
-                                               (document.getDocumentReference("utilisateur_id")),date));
+                                               (document.getDocumentReference("utilisateur_id")),date,(document.getData().get("numéro_commande")).toString()));
                                        break;
                                    default:
                                        break;
@@ -158,15 +168,45 @@ public class MyOrdersFragment extends Fragment {
                                 expandableListDetail.put("En préparation", en_prepa);
                                 expandableListDetail.put("Prêtes", prete);
                                 expandableListDetail.put("Terminées", terminee);
+                                cast_creneau_param=document.getData().get("creneau_attente").toString();
+                                numero_commande_param=document.getData().get("numéro_commande").toString();
+
+
 
 
                             }
 
+
                             //Adapteur dans le layout
-                            expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-                            java.util.Collections.sort(expandableListTitle);
+                            expandableListTitle = new ArrayList<String>();
+                            //expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+                            expandableListTitle.add("Prêtes");
+                            expandableListTitle.add("En préparation");
+                            expandableListTitle.add("Terminées");
+                            //java.util.Collections.sort(expandableListTitle);
                             expandableListAdapter = new MyOrdersAdapter(getActivity(), expandableListTitle, expandableListDetail);
                             expandableListView.setAdapter(expandableListAdapter);
+
+
+
+                            expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                                @Override
+                                public boolean onChildClick(ExpandableListView parent, View view, int groupPosition, int childPosition, long id) {
+
+                                    FragmentTransaction trans = getFragmentManager().beginTransaction();
+
+                                    trans.replace(R.id.root_orders_fragment, OrderIsReadyFragment.newInstance(groupPosition,cast_creneau_param,numero_commande_param));
+
+
+                                    trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                    trans.addToBackStack(null);
+
+                                    trans.commit();
+
+                                    return true;
+
+                                }
+                            });
 
 
 
@@ -177,6 +217,7 @@ public class MyOrdersFragment extends Fragment {
                         }
                     }
                 });
+
 
 
 

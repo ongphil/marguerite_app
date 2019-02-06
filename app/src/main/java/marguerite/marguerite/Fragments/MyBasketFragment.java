@@ -10,16 +10,15 @@ import android.view.ViewGroup;
 
 import marguerite.marguerite.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OrderStatusWaitingTimeFragment.OnFragmentInteractionListener} interface
+ * {@link MyBasketFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link OrderStatusWaitingTimeFragment#newInstance} factory method to
+ * Use the {@link MyBasketFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OrderStatusWaitingTimeFragment extends Fragment {
+public class MyBasketFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +30,7 @@ public class OrderStatusWaitingTimeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public OrderStatusWaitingTimeFragment() {
+    public MyBasketFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +40,11 @@ public class OrderStatusWaitingTimeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment OrderStatusWaitingTimeFragment.
+     * @return A new instance of fragment MyBasketFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static OrderStatusWaitingTimeFragment newInstance(String param1, String param2) {
-        OrderStatusWaitingTimeFragment fragment = new OrderStatusWaitingTimeFragment();
+    public static MyBasketFragment newInstance(String param1, String param2) {
+        MyBasketFragment fragment = new MyBasketFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +65,7 @@ public class OrderStatusWaitingTimeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_status_waiting_time, container, false);
+        return inflater.inflate(R.layout.fragment_my_basket, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

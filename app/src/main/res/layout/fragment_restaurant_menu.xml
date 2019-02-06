@@ -27,6 +27,13 @@
                 android:gravity="fill_vertical|center_horizontal"
                 android:text="Nom du restaurant" />
 
+            <Button
+                android:id="@+id/button_panier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Panier" />
+
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import marguerite.marguerite.Fragments.HomeFragment;
 import marguerite.marguerite.Fragments.MyOrdersFragment;
+import marguerite.marguerite.Fragments.OrderIsReadyFragment;
 import marguerite.marguerite.Fragments.ProfileFragment;
 import marguerite.marguerite.Fragments.RootHomeFragment;
 import marguerite.marguerite.Fragments.RootOrdersFragment;
@@ -27,7 +28,7 @@ import marguerite.marguerite.R;
 
 public class MainActivity extends AppCompatActivity
         implements ViewPager.OnPageChangeListener, HomeFragment.OnFragmentInteractionListener,RootHomeFragment.OnFragmentInteractionListener, RootOrdersFragment.OnFragmentInteractionListener, MyOrdersFragment.OnFragmentInteractionListener,
-        ProfileFragment.OnFragmentInteractionListener,RestaurantMenuFragment.OnFragmentInteractionListener{
+        ProfileFragment.OnFragmentInteractionListener,RestaurantMenuFragment.OnFragmentInteractionListener, OrderIsReadyFragment.OnFragmentInteractionListener {
 
     private ViewPager viewPager;
     private BottomNavigationView navigation;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity
                 sharedPreferences.edit().putString("password_utilisateur",(documentSnapshot.get("password")).toString()).apply();
 
                 String name = sharedPreferences.getString("nom_utilisateur", null);
+                String mail = sharedPreferences.getString("mail_utilisateur", null);
 
             }
         });

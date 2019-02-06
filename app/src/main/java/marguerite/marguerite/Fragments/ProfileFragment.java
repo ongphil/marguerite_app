@@ -2,6 +2,7 @@ package marguerite.marguerite.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,11 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import marguerite.marguerite.Activities.LoginActivity;
 import marguerite.marguerite.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -36,8 +42,25 @@ public class ProfileFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
     Button deconnexion;
     FirebaseAuth auth;
+
+    EditText editText_last_name;
+    EditText editText_first_name;
+    EditText editText_date;
+    EditText editText_num_tel;
+    EditText editText_mail;
+    EditText editText_password;
+
+    Spinner spinner_telephone_index;
+
+    private SharedPreferences sharedPreferences;
+
+    TextView test;
+    String test_string;
+
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -76,7 +99,22 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
 
+        ///Donne-t-on le droit à l'utilisateur de changer des paramètres de son profil ?
         deconnexion = (Button)view.findViewById(R.id.button_deconnect);
+        editText_last_name =(EditText)view.findViewById(R.id.editText_last_name_info);
+        editText_first_name =(EditText)view.findViewById(R.id.editText_first_name_info);
+        editText_date =(EditText)view.findViewById(R.id.editText_date_info);
+        editText_num_tel =(EditText)view.findViewById(R.id.editText_num_tel_info);
+        editText_mail =(EditText)view.findViewById(R.id.editText_mail_info);
+        editText_password =(EditText)view.findViewById(R.id.editText_password_info);
+
+        test =(TextView)view.findViewById(R.id.textView_test);
+        sharedPreferences = this.getActivity().getSharedPreferences("marguerite", MODE_PRIVATE);
+
+        test_string =sharedPreferences.getString("nom_utilisateur",null);
+        test.setText(test_string);
+
+
 
         auth=FirebaseAuth.getInstance();
 
@@ -90,6 +128,7 @@ public class ProfileFragment extends Fragment {
         });
         return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

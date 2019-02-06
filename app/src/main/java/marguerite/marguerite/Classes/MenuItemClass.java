@@ -14,6 +14,12 @@ public  class MenuItemClass extends Object{
         this(nom, categorie, description, disponibilite, prix_unitaire, 0);
     }
 
+    public MenuItemClass(String nom,  Integer quantite){
+        m_nom=nom;
+        //Double prix_unitaire,     m_prix_unitaire=prix_unitaire;
+        m_quantite=quantite;
+    }
+
     public MenuItemClass(String nom, String categorie, String description, String disponibilite, Double prix_unitaire, Integer quantite){
 
         m_nom=nom;
