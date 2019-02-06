@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity
                 sharedPreferences.edit().putString("password_utilisateur",(documentSnapshot.get("password")).toString()).apply();
 
                 String name = sharedPreferences.getString("nom_utilisateur", null);
+                String mail = sharedPreferences.getString("mail_utilisateur", null);
 
             }
         });

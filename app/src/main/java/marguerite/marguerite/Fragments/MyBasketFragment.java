@@ -1,36 +1,24 @@
 package marguerite.marguerite.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-import marguerite.marguerite.Activities.LoginActivity;
 import marguerite.marguerite.R;
-
-import static android.content.Context.MODE_PRIVATE;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ProfileFragment.OnFragmentInteractionListener} interface
+ * {@link MyBasketFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ProfileFragment#newInstance} factory method to
+ * Use the {@link MyBasketFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class MyBasketFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -42,27 +30,7 @@ public class ProfileFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-
-    Button deconnexion;
-    FirebaseAuth auth;
-
-    EditText editText_last_name;
-    EditText editText_first_name;
-    EditText editText_date;
-    EditText editText_num_tel;
-    EditText editText_mail;
-    EditText editText_password;
-
-    Spinner spinner_telephone_index;
-
-    private SharedPreferences sharedPreferences;
-
-    TextView test;
-    String test_string;
-
-
-
-    public ProfileFragment() {
+    public MyBasketFragment() {
         // Required empty public constructor
     }
 
@@ -72,11 +40,11 @@ public class ProfileFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
+     * @return A new instance of fragment MyBasketFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
+    public static MyBasketFragment newInstance(String param1, String param2) {
+        MyBasketFragment fragment = new MyBasketFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -97,43 +65,13 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_profile, container, false);
-
-        ///Donne-t-on le droit à l'utilisateur de changer des paramètres de son profil ?
-        deconnexion = (Button)view.findViewById(R.id.button_deconnect);
-        editText_last_name =(EditText)view.findViewById(R.id.editText_last_name_info);
-        editText_first_name =(EditText)view.findViewById(R.id.editText_first_name_info);
-        editText_date =(EditText)view.findViewById(R.id.editText_date_info);
-        editText_num_tel =(EditText)view.findViewById(R.id.editText_num_tel_info);
-        editText_mail =(EditText)view.findViewById(R.id.editText_mail_info);
-        editText_password =(EditText)view.findViewById(R.id.editText_password_info);
-
-        test =(TextView)view.findViewById(R.id.textView_test);
-        sharedPreferences = this.getActivity().getSharedPreferences("marguerite", MODE_PRIVATE);
-
-        test_string =sharedPreferences.getString("nom_utilisateur",null);
-        test.setText(test_string);
-
-
-
-        auth=FirebaseAuth.getInstance();
-
-        deconnexion.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                auth.signOut();
-                Intent login = new Intent(getContext(), LoginActivity.class);
-                startActivity(login);
-            }
-        });
-        return view;
+        return inflater.inflate(R.layout.fragment_my_basket, container, false);
     }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteractionProfile(uri);
+            mListener.onFragmentInteraction(uri);
         }
     }
 
@@ -166,6 +104,6 @@ public class ProfileFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteractionProfile(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 }

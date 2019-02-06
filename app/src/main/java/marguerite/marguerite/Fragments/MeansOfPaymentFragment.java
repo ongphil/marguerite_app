@@ -1,6 +1,7 @@
 package marguerite.marguerite.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
+import marguerite.marguerite.Activities.LoginActivity;
+import marguerite.marguerite.Activities.MainActivity;
 import marguerite.marguerite.R;
 
 
@@ -38,6 +42,7 @@ public class MeansOfPaymentFragment extends Fragment {
     private EditText editText_cc_number;
    // private TextWatcher textWatcher= new TextWatcher();
     private OnFragmentInteractionListener mListener;
+    private Button button_validate;
 
     public MeansOfPaymentFragment() {
         // Required empty public constructor
@@ -109,6 +114,19 @@ public class MeansOfPaymentFragment extends Fragment {
                 }
             }
         });
+
+        button_validate=(Button)view.findViewById(R.id.button_validate);
+        button_validate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sendToMain = new Intent (getActivity(), LoginActivity.class);
+                startActivity(sendToMain);
+                getActivity().finish();
+
+            }
+        });
+
 
         return view;
     }

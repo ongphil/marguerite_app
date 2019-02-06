@@ -7,8 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
@@ -20,7 +22,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import marguerite.marguerite.Adapters.MenuItemsAdapter;
 import marguerite.marguerite.Classes.MenuItemClass;
@@ -54,7 +58,10 @@ public class RestaurantMenuFragment extends Fragment {
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
     private List<String> expandableListTitle;
-    private HashMap<String, List<MenuItemClass>> expandableListDetail;
+    private HashMap<String, List<MenuItemClass>> hashMap_categorie_menu;
+    private ArrayList<MenuItemClass> mon_panier;
+
+    private Button button_panier;
 
     public RestaurantMenuFragment() {
         // Required empty public constructor
@@ -95,11 +102,13 @@ public class RestaurantMenuFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_restaurant_menu, container, false);
 
         expandableListView = (ExpandableListView)view.findViewById(R.id.expandableListView);
+        button_panier = (Button) view.findViewById(R.id.button_panier);
+
 
         FirebaseFirestore firestore;
         firestore=FirebaseFirestore.getInstance();
 
-        final HashMap<String, List<MenuItemClass>> expandableListDetail = new HashMap<String, List<MenuItemClass>>();
+        final HashMap<String, List<MenuItemClass>> hashMap_categorie_menu = new HashMap<String, List<MenuItemClass>>();
 
 
         final ArrayList<MenuItemClass> menu = new ArrayList<>();
@@ -108,7 +117,7 @@ public class RestaurantMenuFragment extends Fragment {
         final List<MenuItemClass> entree = new ArrayList<MenuItemClass>();
         final List<MenuItemClass> plat = new ArrayList<MenuItemClass>();
         final List<MenuItemClass> dessert = new ArrayList<MenuItemClass>();
-
+        mon_panier= new ArrayList<MenuItemClass>();
 
         firestore.collection("Restaurants").document("8tWygSWs1VATB4O4fSLk").collection("Carte").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -152,28 +161,39 @@ public class RestaurantMenuFragment extends Fragment {
                                         break;
 
                                 }
-                                expandableListDetail.put("BOISSONS", boisson);
-                                expandableListDetail.put("ENTREES", entree);
-                                expandableListDetail.put("PLATS", plat);
-                                expandableListDetail.put("DESSERTS", dessert);
+                                hashMap_categorie_menu.put("BOISSONS", boisson);
+                                hashMap_categorie_menu.put("ENTREES", entree);
+                                hashMap_categorie_menu.put("PLATS", plat);
+                                hashMap_categorie_menu.put("DESSERTS", dessert);
 
                             }
 
 
-                            expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-                            expandableListAdapter = new MenuItemsAdapter(getActivity(), expandableListTitle, expandableListDetail);
+                            expandableListTitle = new ArrayList<String>(hashMap_categorie_menu.keySet());
+                            expandableListAdapter = new MenuItemsAdapter(getActivity(), expandableListTitle, hashMap_categorie_menu,mon_panier);
                             expandableListView.setAdapter(expandableListAdapter);
-                            int i=0;
-
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
+        button_panier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-
-
+                int j=0;
+                for (List<MenuItemClass> value : hashMap_categorie_menu.values()) {
+                    for (int i=0; i< value.size();i++)
+                    {
+                        if (value.get(i).getQuantite()!=0)
+                        {
+                            mon_panier.add(new MenuItemClass(value.get(i).getNom(),value.get(i).getQuantite()));
+                            int k=0;
+                        }
+                    }
+                }
+            }
+        });
 
         return view;
     }
