@@ -65,6 +65,8 @@ public class RestaurantMenuFragment extends Fragment {
     private Button button_panier;
     private TextView panier;
 
+    private TextView textView_basket;
+
 
 
     public RestaurantMenuFragment() {
@@ -108,6 +110,7 @@ public class RestaurantMenuFragment extends Fragment {
         expandableListView = (ExpandableListView)view.findViewById(R.id.expandableListView);
         button_panier = (Button) view.findViewById(R.id.button_panier);
         panier = (TextView)view.findViewById(R.id.textView_basket);
+        textView_basket = (TextView) view.findViewById(R.id.textView_basket);
 
 
         FirebaseFirestore firestore;
@@ -186,7 +189,10 @@ public class RestaurantMenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                int j=0;
+                int nb_total_de_menuItemClass =0;
+                mon_panier.clear();
+
+
                 for (List<MenuItemClass> value : hashMap_categorie_menu.values()) {
                     for (int i=0; i< value.size();i++)
                     {
@@ -199,7 +205,13 @@ public class RestaurantMenuFragment extends Fragment {
                     }
                 }
 
+                for (MenuItemClass menuItemClass : mon_panier)
+                {
+                    nb_total_de_menuItemClass += menuItemClass.getQuantite();
+                }
 
+                String temp = Integer.toString(nb_total_de_menuItemClass);
+                textView_basket.setText(temp);
 
             }
         });
