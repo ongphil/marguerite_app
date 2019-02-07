@@ -64,6 +64,9 @@ public class MenuItemsAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.expandedListItem);
         expandedListTextView.setText(expandedListText.getNom());
 
+        final TextView price = (TextView) convertView.findViewById(R.id.expanded_price);
+        price.setText(expandedListText.getPrix_unitaire().toString() + "€");
+
         String test = expandedListText.getNom();
         String test2 = expandedListText.getQuantite().toString();
 

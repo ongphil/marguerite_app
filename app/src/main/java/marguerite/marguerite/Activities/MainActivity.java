@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences sharedPreferences;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity
                 sharedPreferences = getBaseContext().getSharedPreferences("marguerite", MODE_PRIVATE);
                 sharedPreferences.edit().putString("nom_utilisateur", (documentSnapshot.get("nom")).toString()).apply();
                 sharedPreferences.edit().putString("prenom_utilisateur",(documentSnapshot.get("prenom")).toString()).apply();
+                sharedPreferences.edit().putString("date_naissance",(documentSnapshot.get("date_de_naissance")).toString()).apply();
                 sharedPreferences.edit().putString("sexe_utilisateur",(documentSnapshot.get("sexe")).toString()).apply();
                 sharedPreferences.edit().putString("mail_utilisateur",(documentSnapshot.get("mail")).toString()).apply();
                 sharedPreferences.edit().putString("password_utilisateur",(documentSnapshot.get("password")).toString()).apply();

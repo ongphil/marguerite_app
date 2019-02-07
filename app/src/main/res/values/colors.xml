@@ -16,4 +16,6 @@
     <color name="Color_my_order">#ececec</color>
     <color name="Color_statut_prete">#14b133</color>
     <color name="Divider">#272323</color>
+    <color name="Color_statut_en_prepa">#e67212</color>
+    <color name="Color_statut_terminee">#014e3c</color>
 </resources>

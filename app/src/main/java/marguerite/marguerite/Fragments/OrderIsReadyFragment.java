@@ -93,6 +93,9 @@ public class OrderIsReadyFragment extends Fragment {
 
         if(groupPosition==0)
         {
+
+            //status.setTextColor(getResources().getColor(R.color.Color_statut_prete));
+            status.setTextColor(getActivity().getResources().getColor(R.color.Color_statut_prete));
             status.setText("prête");
             order_nb_or_estimation.setText("Numéro de commande : " + numero_commande);
         }
@@ -100,6 +103,8 @@ public class OrderIsReadyFragment extends Fragment {
 
         if(groupPosition==1)
         {
+
+            status.setTextColor(getResources().getColor(R.color.Color_statut_en_prepa));
             status.setText("en préparation");
             order_nb_or_estimation.setText("Temps d'estimation : " + temp_creneau + " min");
             hourglass.setVisibility(View.VISIBLE);
@@ -109,6 +114,8 @@ public class OrderIsReadyFragment extends Fragment {
 
         if(groupPosition==2)
         {
+
+            status.setTextColor(getResources().getColor(R.color.Color_statut_terminee));
             status.setText("terminée");
             order_nb_or_estimation.setText("Numéro de commande : " + numero_commande);
         }

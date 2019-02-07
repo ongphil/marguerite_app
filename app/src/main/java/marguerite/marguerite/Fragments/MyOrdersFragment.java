@@ -195,7 +195,8 @@ public class MyOrdersFragment extends Fragment {
 
                                     FragmentTransaction trans = getFragmentManager().beginTransaction();
 
-                                    trans.replace(R.id.root_orders_fragment, OrderIsReadyFragment.newInstance(groupPosition,cast_creneau_param,numero_commande_param));
+                                    trans.replace(R.id.root_orders_fragment, OrderIsReadyFragment.newInstance(groupPosition,
+                                            cast_creneau_param,numero_commande_param));
 
 
                                     trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

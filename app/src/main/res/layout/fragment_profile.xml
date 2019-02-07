@@ -15,18 +15,11 @@
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="30dp">
 
-        <TextView
-            android:id="@+id/textView_test"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/Color_editText" />
-
         <RadioGroup
             android:id="@+id/radio_button_gender"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
             <RadioButton
@@ -44,37 +37,29 @@
                 android:text="Mme." />
         </RadioGroup>
 
-        <EditText
-            android:id="@+id/editText_last_name_info"
+        <TextView
+            android:id="@+id/textview_last_name_info"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:autofillHints="Last Name"
+            android:layout_weight="2"
             android:background="@color/Color_editText"
-            android:ems="10"
-            android:hint="Nom"
-            android:inputType="textPersonName"
-            android:textStyle="italic" />
+            android:text="TextView" />
 
-        <EditText
-            android:id="@+id/editText_first_name_info"
+        <TextView
+            android:id="@+id/textview_first_name_info"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:autofillHints="First Name"
+            android:layout_weight="2"
             android:background="@color/Color_editText"
-            android:ems="10"
-            android:hint="Prénom"
-            android:inputType="textPersonName"
-            android:textStyle="italic" />
+            android:text="TextView" />
 
         <LinearLayout
             android:id="@+id/linear_layout_birth"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:orientation="horizontal">
 
             <TextView
@@ -85,18 +70,14 @@
                 android:layout_weight="1"
                 android:text="Day of Birth" />
 
-            <EditText
-                android:id="@+id/editText_date_info"
+            <TextView
+                android:id="@+id/textview_date_info"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="2.5dp"
-                android:layout_weight="2"
-                android:autofillHints="28"
+                android:layout_weight="1"
                 android:background="@color/Color_editText"
-                android:ems="10"
-                android:hint="JJ-MM-AAAA"
-                android:inputType="date"
-                android:textStyle="italic" />
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
@@ -117,7 +98,7 @@
                 android:id="@+id/editText_num_tel_info"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:layout_margin="2.5dp"
                 android:layout_weight="5"
                 android:background="@color/Color_editText"
                 android:ems="10"
@@ -131,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/Color_editText"
             android:ems="10"
             android:hint="Adresse mail"
@@ -143,7 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/Color_editText"
             android:ems="10"
             android:hint="Mot de passe"
@@ -160,7 +141,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:orientation="horizontal">
 
             <Button
@@ -169,7 +150,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Déconnexion"
-                android:textColor="@color/color_mes_cartes" />
+                android:textColor="@color/color_mes_cartes"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_delete_account"
@@ -177,7 +159,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Supprimer "
-                android:textColor="@color/color_mes_cartes" />
+                android:textColor="@color/color_mes_cartes"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <CheckBox
@@ -185,7 +168,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="10dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:text="J'ai lu et j'accepte les conditions générale de vente"
             android:textColor="@color/color_text_terms_of_use"
             android:textStyle="italic"

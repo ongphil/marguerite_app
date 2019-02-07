@@ -46,9 +46,9 @@ public class ProfileFragment extends Fragment {
     Button deconnexion;
     FirebaseAuth auth;
 
-    EditText editText_last_name;
-    EditText editText_first_name;
-    EditText editText_date;
+    TextView textView_last_name;
+    TextView textView_first_name;
+    TextView textView_date;
     EditText editText_num_tel;
     EditText editText_mail;
     EditText editText_password;
@@ -57,8 +57,10 @@ public class ProfileFragment extends Fragment {
 
     private SharedPreferences sharedPreferences;
 
-    TextView test;
-    String test_string;
+
+    String last_name;
+    String first_name;
+    String date;
 
 
 
@@ -101,18 +103,24 @@ public class ProfileFragment extends Fragment {
 
         ///Donne-t-on le droit à l'utilisateur de changer des paramètres de son profil ?
         deconnexion = (Button)view.findViewById(R.id.button_deconnect);
-        editText_last_name =(EditText)view.findViewById(R.id.editText_last_name_info);
-        editText_first_name =(EditText)view.findViewById(R.id.editText_first_name_info);
-        editText_date =(EditText)view.findViewById(R.id.editText_date_info);
+        textView_last_name =(TextView) view.findViewById(R.id.textview_last_name_info);
+        textView_first_name=(TextView) view.findViewById(R.id.textview_first_name_info);
+        textView_date =(TextView) view.findViewById(R.id.textview_date_info);
         editText_num_tel =(EditText)view.findViewById(R.id.editText_num_tel_info);
         editText_mail =(EditText)view.findViewById(R.id.editText_mail_info);
         editText_password =(EditText)view.findViewById(R.id.editText_password_info);
 
-        test =(TextView)view.findViewById(R.id.textView_test);
+
         sharedPreferences = this.getActivity().getSharedPreferences("marguerite", MODE_PRIVATE);
 
-        test_string =sharedPreferences.getString("nom_utilisateur",null);
-        test.setText(test_string);
+        last_name = sharedPreferences.getString("nom_utilisateur",null);
+        textView_last_name.setText(last_name);
+
+        first_name = sharedPreferences.getString("prenom_utilisateur",null);
+        textView_first_name.setText(first_name);
+
+        date = sharedPreferences.getString("date_naissance",null);
+        textView_date.setText(date);
 
 
 

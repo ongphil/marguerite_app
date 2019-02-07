@@ -29,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_weight="5"
+                android:background="@color/Color_editText"
                 android:divider="@android:color/darker_gray"
                 android:dividerHeight="1dp"
                 android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft">

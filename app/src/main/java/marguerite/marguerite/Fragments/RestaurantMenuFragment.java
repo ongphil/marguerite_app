@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,6 +63,9 @@ public class RestaurantMenuFragment extends Fragment {
     private ArrayList<MenuItemClass> mon_panier;
 
     private Button button_panier;
+    private TextView panier;
+
+
 
     public RestaurantMenuFragment() {
         // Required empty public constructor
@@ -103,6 +107,7 @@ public class RestaurantMenuFragment extends Fragment {
 
         expandableListView = (ExpandableListView)view.findViewById(R.id.expandableListView);
         button_panier = (Button) view.findViewById(R.id.button_panier);
+        panier = (TextView)view.findViewById(R.id.textView_basket);
 
 
         FirebaseFirestore firestore;
@@ -189,11 +194,17 @@ public class RestaurantMenuFragment extends Fragment {
                         {
                             mon_panier.add(new MenuItemClass(value.get(i).getNom(),value.get(i).getQuantite()));
                             int k=0;
+
                         }
                     }
                 }
+
+
+
             }
         });
+
+
 
         return view;
     }
